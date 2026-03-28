@@ -34,7 +34,7 @@
   --shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
 
   /* Layout */
-  --max-width: 680px;
+  --max-width: 1000px;
 }
 
 /* --- Reset --- */
@@ -76,7 +76,7 @@ a:focus-visible {
 }
 
 .section {
-  padding: 3.5rem 0;
+  padding: 4.5rem 0;
 }
 
 /* --- Surface (shared pattern with Veilkeeper site) --- */
@@ -162,14 +162,14 @@ a:focus-visible {
 
 /* --- Hero --- */
 .hero {
-  padding: 5rem 0 2rem;
+  padding: 6rem 0 3rem;
   text-align: center;
   position: relative;
   z-index: 1;
 }
 
 .hero-content {
-  max-width: 520px;
+  max-width: 640px;
   margin: 0 auto;
 }
 
