@@ -1,0 +1,434 @@
+/* ============================================
+   PocketLore Studios — styles.css
+   Sibling to veilkeepergame.com styling
+   Warm amber palette, shared typography
+   ============================================ */
+
+/* --- Variables --- */
+:root {
+  /* Background */
+  --bg: #0a0908;
+  --bg-surface: #13110e;
+  --bg-surface-hover: #1a1714;
+
+  /* Amber palette (studio warmth) */
+  --amber: #c9a04a;
+  --amber-light: #dbb76a;
+  --amber-soft: rgba(201, 160, 74, 0.12);
+  --amber-glow: rgba(201, 160, 74, 0.04);
+
+  /* Purple accent (Veilkeeper connection) */
+  --purple: #7b2fff;
+  --purple-soft: rgba(123, 47, 255, 0.12);
+  --purple-border: rgba(123, 47, 255, 0.15);
+  --purple-text: #b98dff;
+
+  /* Text */
+  --text-primary: #e8dfcf;
+  --text-secondary: #9a8e7a;
+  --text-muted: #5e5548;
+
+  /* Borders & surfaces */
+  --border: rgba(201, 160, 74, 0.08);
+  --border-hover: rgba(201, 160, 74, 0.18);
+  --shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+
+  /* Layout */
+  --max-width: 680px;
+}
+
+/* --- Reset --- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Raleway', sans-serif;
+  color: var(--text-primary);
+  background: var(--bg);
+  line-height: 1.7;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Subtle warm ambient glow */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 50vh;
+  background: radial-gradient(ellipse at 50% -10%, var(--amber-glow) 0%, transparent 65%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+a:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* --- Layout --- */
+.container {
+  width: min(calc(100% - 2rem), var(--max-width));
+  margin: 0 auto;
+}
+
+.section {
+  padding: 3.5rem 0;
+}
+
+/* --- Surface (shared pattern with Veilkeeper site) --- */
+.surface {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  transition: border-color 0.3s ease;
+}
+
+.surface:hover {
+  border-color: var(--border-hover);
+}
+
+/* --- Topbar (matches Veilkeeper topbar structure) --- */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  background: rgba(10, 9, 8, 0.75);
+  border-bottom: 1px solid var(--border);
+}
+
+.topbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 64px;
+  gap: 1rem;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.brand-logo {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  object-fit: cover;
+  background: var(--bg-surface);
+}
+
+.brand-title {
+  font-family: 'Cinzel', serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: 1px;
+}
+
+.brand-sub {
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--text-muted);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.nav a {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  transition: color 0.25s;
+}
+
+.nav a:hover { color: var(--amber); }
+
+/* --- Hero --- */
+.hero {
+  padding: 5rem 0 2rem;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-content {
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+.eyebrow {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--amber);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.hero h1 {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(28px, 5vw, 38px);
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: 2px;
+  line-height: 1.15;
+  margin-bottom: 12px;
+}
+
+.lead {
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--amber-light);
+  margin-bottom: 8px;
+}
+
+.sublead {
+  font-size: 15px;
+  color: var(--text-secondary);
+  max-width: 440px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+/* --- Section Heading (eyebrow pattern from Veilkeeper) --- */
+.section-heading {
+  margin-bottom: 20px;
+}
+
+.section-eyebrow {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+/* --- Project Card --- */
+.project-card {
+  padding: 28px;
+}
+
+.project-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.project-icon {
+  width: 128px;
+  height: 128px;
+  border-radius: 10px;
+  border: 1px solid var(--purple-border);
+  background: var(--purple-soft);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+
+.project-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.project-title {
+  font-family: 'Cinzel', serif;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: 1px;
+  line-height: 1.2;
+}
+
+.project-status {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--purple-text);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.project-hook {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--amber-light);
+  margin-bottom: 10px;
+  font-style: italic;
+}
+
+.project-desc {
+  font-size: 14.5px;
+  color: var(--text-secondary);
+  line-height: 1.75;
+  margin-bottom: 18px;
+}
+
+.project-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.meta-tag {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 5px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.01);
+}
+
+.project-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--amber);
+  transition: color 0.2s;
+}
+
+.project-link:hover { color: var(--text-primary); }
+
+.project-link .arrow {
+  transition: transform 0.2s;
+  display: inline-block;
+}
+
+.project-link:hover .arrow {
+  transform: translateX(3px);
+}
+
+/* --- Founder Card --- */
+.founder-card {
+  padding: 28px;
+}
+
+.founder-name {
+  font-family: 'Cinzel', serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: 1px;
+  margin-bottom: 4px;
+}
+
+.founder-role {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--amber);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.founder-bio {
+  font-size: 14.5px;
+  color: var(--text-secondary);
+  line-height: 1.75;
+}
+
+/* --- Connect --- */
+.connect-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.connect-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 18px 16px;
+  text-align: center;
+  gap: 2px;
+}
+
+.connect-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.connect-desc {
+  font-size: 11px;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.email-link {
+  display: block;
+  text-align: center;
+  padding: 16px;
+  margin-top: 10px;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--text-secondary);
+  letter-spacing: 0.5px;
+  transition: color 0.25s;
+}
+
+.email-link:hover {
+  color: var(--amber);
+}
+
+/* --- Footer (matches Veilkeeper footer pattern) --- */
+.footer {
+  margin-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0 32px;
+  font-size: 12px;
+  color: var(--text-muted);
+  letter-spacing: 0.5px;
+}
+
+/* --- Responsive --- */
+@media (max-width: 640px) {
+  .hero { padding: 3.5rem 0 1.5rem; }
+  .section { padding: 2.5rem 0; }
+  .topbar-inner { min-height: 56px; }
+  .nav { gap: 1rem; }
+  .nav a { font-size: 11px; letter-spacing: 1px; }
+  .brand-title { font-size: 13px; }
+  .connect-grid { grid-template-columns: 1fr; }
+  .footer-inner { flex-direction: column; gap: 4px; align-items: center; }
+  .container { width: min(calc(100% - 1.5rem), var(--max-width)); }
+  .project-meta { gap: 6px; }
+}
+
+@media (max-width: 400px) {
+  .nav { display: none; }
+  .hero h1 { font-size: 26px; }
+}
