@@ -38,12 +38,14 @@
   --purple: #7b2fff;
   --purple-soft: color-mix(in srgb, var(--purple) 12%, transparent);
   --purple-border: color-mix(in srgb, var(--purple) 15%, transparent);
-  --purple-text: #b98dff;
+  --purple-accessible: #9b72ff;
 
-  /* Text */
-  --text-primary: #e8dfcf;
-  --text-secondary: #9a8e7a;
-  --text-muted: #5e5548;
+  /* Text — WCAG AA tiers against --bg and --bg-surface.
+     --text-muted is the dimmest color allowed for meaningful text
+     (nav, labels, tags, footer); darker shades are decorative-only. */
+  --text-primary: #d8d1c8;
+  --text-secondary: #aaa094;
+  --text-muted: #8a8176;
 
   /* Borders & surfaces */
   --border: color-mix(in srgb, var(--amber) 8%, transparent);
@@ -282,7 +284,7 @@ a:focus-visible {
 .project-status {
   font-size: 11px;
   font-weight: 500;
-  color: var(--purple-text);
+  color: var(--purple-accessible);
   letter-spacing: 2px;
   text-transform: uppercase;
 }
