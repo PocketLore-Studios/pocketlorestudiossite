@@ -304,6 +304,12 @@ a:focus-visible {
   background: rgba(255, 255, 255, 0.01);
 }
 
+.project-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 28px;
+}
+
 .project-link {
   display: inline-flex;
   align-items: center;
