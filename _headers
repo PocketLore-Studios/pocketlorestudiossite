@@ -1,0 +1,17 @@
+# Cloudflare Workers static assets headers
+
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+
+# Fonts never change without a filename change
+/assets/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Images may be replaced in place (placeholder-era); cache one day
+/assets/*.png
+  Cache-Control: public, max-age=86400
+/assets/*.webp
+  Cache-Control: public, max-age=86400

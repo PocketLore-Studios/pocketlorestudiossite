@@ -4,6 +4,23 @@
    Warm amber palette, shared typography
    ============================================ */
 
+/* --- Fonts (self-hosted variable fonts, latin subset) --- */
+@font-face {
+  font-family: 'Cinzel';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url('/assets/fonts/cinzel-latin.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 300 600;
+  font-display: swap;
+  src: url('/assets/fonts/raleway-latin.woff2') format('woff2');
+}
+
 /* --- Variables --- */
 :root {
   /* Background */
@@ -11,16 +28,16 @@
   --bg-surface: #13110e;
   --bg-surface-hover: #1a1714;
 
-  /* Amber palette (studio warmth) */
+  /* Amber palette (studio warmth) — tints derived from --amber */
   --amber: #c9a04a;
   --amber-light: #dbb76a;
-  --amber-soft: rgba(201, 160, 74, 0.12);
-  --amber-glow: rgba(201, 160, 74, 0.04);
+  --amber-soft: color-mix(in srgb, var(--amber) 12%, transparent);
+  --amber-glow: color-mix(in srgb, var(--amber) 4%, transparent);
 
-  /* Purple accent (Veilkeeper connection) */
+  /* Purple accent (Veilkeeper connection) — tints derived from --purple */
   --purple: #7b2fff;
-  --purple-soft: rgba(123, 47, 255, 0.12);
-  --purple-border: rgba(123, 47, 255, 0.15);
+  --purple-soft: color-mix(in srgb, var(--purple) 12%, transparent);
+  --purple-border: color-mix(in srgb, var(--purple) 15%, transparent);
   --purple-text: #b98dff;
 
   /* Text */
@@ -29,8 +46,8 @@
   --text-muted: #5e5548;
 
   /* Borders & surfaces */
-  --border: rgba(201, 160, 74, 0.08);
-  --border-hover: rgba(201, 160, 74, 0.18);
+  --border: color-mix(in srgb, var(--amber) 8%, transparent);
+  --border-hover: color-mix(in srgb, var(--amber) 18%, transparent);
   --shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
 
   /* Layout */
@@ -101,7 +118,7 @@ a:focus-visible {
   z-index: 20;
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
-  background: rgba(10, 9, 8, 0.75);
+  background: color-mix(in srgb, var(--bg) 75%, transparent);
   border-bottom: 1px solid var(--border);
 }
 
