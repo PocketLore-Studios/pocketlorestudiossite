@@ -97,7 +97,7 @@ a:focus-visible {
 }
 
 .section {
-  padding: 4.5rem 0;
+  padding: 3rem 0;
 }
 
 /* --- Surface (shared pattern with Veilkeeper site) --- */
@@ -404,7 +404,7 @@ a:focus-visible {
 /* --- Connect --- */
 .connect-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
   gap: 10px;
 }
 
@@ -466,7 +466,7 @@ a:focus-visible {
 /* --- Responsive --- */
 @media (max-width: 640px) {
   .hero { padding: 3.5rem 0 1.5rem; }
-  .section { padding: 2.5rem 0; }
+  .section { padding: 2rem 0; }
   .topbar-inner { min-height: 56px; }
   .nav { gap: 1rem; }
   .nav a { font-size: 11px; letter-spacing: 1px; }
