@@ -15,3 +15,5 @@
   Cache-Control: public, max-age=86400
 /assets/*.webp
   Cache-Control: public, max-age=86400
+/assets/*.svg
+  Cache-Control: public, max-age=86400
