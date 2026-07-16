@@ -183,7 +183,7 @@ a:focus-visible {
 
 /* --- Hero --- */
 .hero {
-  padding: 6rem 0 3rem;
+  padding: 3rem 0 2.5rem;
   text-align: center;
   position: relative;
   z-index: 1;
@@ -212,6 +212,28 @@ a:focus-visible {
   letter-spacing: 2px;
   line-height: 1.15;
   margin-bottom: 12px;
+}
+
+/* Full logo lockup replacing the visible hero heading */
+.hero-logo {
+  display: block;
+  width: min(440px, 75vw);
+  height: auto;
+  margin: 0 auto 24px;
+}
+
+/* Screen-reader-only text (keeps the semantic h1 without visual duplication) */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
 }
 
 .lead {
