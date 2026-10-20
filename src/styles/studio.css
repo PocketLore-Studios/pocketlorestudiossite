@@ -355,14 +355,20 @@ a:focus-visible {
 
 /* At 880px, the 60/40 split leaves about 300px for the copy and controls. */
 @media (min-width: 880px) {
+  .hero { padding-bottom: 1.25rem; }
+
   .project-card {
     grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
     grid-template-areas: 'artwork details' 'artwork actions';
-    column-gap: 1.5rem;
+    column-gap: 1.25rem;
     row-gap: 1.25rem;
+    padding: 20px;
   }
 
   .project-icon { width: 48px; height: 48px; }
+  .project-header { margin-bottom: 14px; }
+  .project-card .studio-button-secondary { padding: .5rem 1rem; }
+  .project-card .game-availability { margin-top: .75rem; }
 }
 
 .project-link {
@@ -560,6 +566,8 @@ a:focus-visible {
 
 #newsletter .formkit-powered-by-convertkit {
   margin-left: 0;
+  width: 110px;
+  background-size: 110px auto;
 }
 
 @media (max-width: 900px) {
@@ -675,6 +683,16 @@ a:focus-visible {
   .project-card { padding: 1.25rem; }
   .studio-button { width: 100%; }
   .hero-logo { width: min(320px, 70vw); }
+  .sublead,
+  .project-desc,
+  .studio-philosophy,
+  .founder-bio,
+  .newsletter-copy p { font-size: 17px; }
+  .project-status,
+  .game-availability,
+  .connect-desc,
+  .footer-inner { font-size: 15px; }
+  #newsletter .formkit-guarantee { font-size: 15px !important; }
 }
 
 /* Expanded text spacing can wrap navigation onto a second row. */
