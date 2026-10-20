@@ -43,9 +43,11 @@ or subscriber details. A passing build does not authorize a migration.
 ## 2. Deploy and verify PocketLore
 
 - [ ] Deploy the selected commit to `pocketlorestudiossite` first, leaving the
-  old site live. Use this repository, `npm ci`, and `npm run deploy`; Wrangler
-  builds Astro and serves only `dist/`. Keep existing PocketLore domains
-  attached and record the resulting deployment ID.
+  old site live. In Workers Builds use this repository's root, Node 24, build
+  command `npm ci && npm run build`, and deploy command `npm run deploy`.
+  Workers Builds ignores Wrangler's custom `build.command`; set the dashboard
+  build step explicitly. Serve only `dist/`, keep existing PocketLore domains
+  attached, and record the resulting deployment ID.
 - [ ] Through both PocketLore public hostnames, verify `/`, `/veilkeeper/`, all
   game navigation, a devlog and its media, RSS, press assets, security.txt, and
   the `/play` variants below. Verify unknown document URLs return HTTP 404,
@@ -150,6 +152,7 @@ submitted, follow its cancellation guidance as part of the rollback.
 
 ## References
 
+- [Workers Builds configuration and custom-build limitation](https://developers.cloudflare.com/workers/ci-cd/builds/configuration/).
 - [Cloudflare static-asset routing](https://developers.cloudflare.com/workers/static-assets/routing/worker-script/)
   and [404 handling](https://developers.cloudflare.com/workers/static-assets/routing/static-site-generation/).
 - [Required secrets and deployment validation](https://developers.cloudflare.com/workers/configuration/secrets/).

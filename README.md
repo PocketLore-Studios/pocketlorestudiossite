@@ -82,6 +82,12 @@ The migration is prepared; release verification remains pending. Follow the
 order, route expectations, and rollback criteria. Complete phases 1–3 before
 calling the migration complete; continue monitoring in phase 4.
 
+For Cloudflare Workers Builds, set the dashboard build command to
+`npm ci && npm run build` and deploy command to `npm run deploy`, using Node 24
+and the repository root. Workers Builds ignores Wrangler's custom `build.command`,
+so the dashboard build step is required; see
+[Cloudflare's build settings](https://developers.cloudflare.com/workers/ci-cd/builds/configuration/).
+
 Green CI does not authorize domain routing, production-secret changes, or
 replacement of the redirect Worker. These require deliberate studio-owner
 approval for the specific release. GitHub workflows here only validate; review
