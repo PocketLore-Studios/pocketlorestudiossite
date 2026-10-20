@@ -7,7 +7,7 @@ export async function GET(context) {
     return rss({
         title: 'Veilkeeper Development Log',
         description: 'Follow the progress of Veilkeeper as core systems come online.',
-        site: context.site,
+        site: new URL('/veilkeeper/', context.site),
         items: devlogs.map(entry => ({
             title: `${entry.data.label} - ${entry.data.title}`,
             pubDate: entry.data.date,
