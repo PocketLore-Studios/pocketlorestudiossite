@@ -96,6 +96,10 @@ a:focus-visible {
   margin: 0 auto;
 }
 
+.section:not(#games) > .container {
+  max-width: 840px;
+}
+
 .section {
   padding: 3rem 0;
 }
@@ -270,7 +274,27 @@ a:focus-visible {
 
 /* --- Project Card --- */
 .project-card {
+  display: grid;
+  grid-template-areas: 'details' 'artwork' 'actions';
+  gap: 1.5rem;
   padding: 28px;
+}
+
+.project-details {
+  grid-area: details;
+  min-width: 0;
+}
+
+.project-artwork {
+  grid-area: artwork;
+  display: block;
+  min-width: 0;
+  align-self: center;
+}
+
+.project-actions {
+  grid-area: actions;
+  min-width: 0;
 }
 
 .project-header {
@@ -325,8 +349,19 @@ a:focus-visible {
   font-size: 16px;
   color: var(--text-secondary);
   line-height: 1.75;
-  margin-bottom: 18px;
   max-width: 68ch;
+}
+
+/* At 880px, the 60/40 split leaves about 300px for the copy and controls. */
+@media (min-width: 880px) {
+  .project-card {
+    grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+    grid-template-areas: 'artwork details' 'artwork actions';
+    column-gap: 1.5rem;
+    row-gap: 1.25rem;
+  }
+
+  .project-icon { width: 48px; height: 48px; }
 }
 
 .project-link {
@@ -621,8 +656,8 @@ a:focus-visible {
 [id] { scroll-margin-top: 6rem; }
 .skip-link { position: fixed; top: -5rem; left: 1rem; z-index: 100; background: var(--bg-surface); padding: .75rem 1rem; }
 .skip-link:focus { top: 1rem; }
-.project-art { width: 100%; height: auto; border-radius: 10px; margin: 1.5rem 0; }
-.game-actions { display: flex; flex-wrap: wrap; gap: .75rem; margin: 1.25rem 0 .5rem; }
+.project-art { width: 100%; height: auto; border-radius: 10px; }
+.game-actions { display: flex; flex-direction: column; gap: .5rem; max-width: 22rem; }
 .studio-button { display: inline-flex; align-items: center; justify-content: center; gap: .75rem; min-height: 44px; padding: .75rem 1.25rem; background: var(--amber); color: var(--bg); font-weight: 600; border: 1px solid var(--amber); border-radius: 8px; }
 .studio-button:hover { background: var(--amber-light); }
 .studio-button-secondary { background: transparent; color: var(--amber-light); }
@@ -638,6 +673,5 @@ a:focus-visible {
 @media (max-width: 640px) {
   .project-card { padding: 1.25rem; }
   .studio-button { width: 100%; }
-  .project-art { max-height: 400px; object-fit: cover; }
   .hero-logo { width: min(320px, 70vw); }
 }

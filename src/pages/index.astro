@@ -27,32 +27,36 @@ import { SITE } from '../lib/site';
         </div>
 
         <div class="project-card surface">
-          <div class="project-header">
-            <div class="project-icon">
-              <img src="/assets/veilkeeper-logo.webp" alt="Veilkeeper logo" width="256" height="256">
+          <div class="project-details">
+            <div class="project-header">
+              <div class="project-icon">
+                <img src="/assets/veilkeeper-logo.webp" alt="Veilkeeper logo" width="256" height="256">
+              </div>
+              <div class="project-identity">
+                <h3 class="project-title">Veilkeeper</h3>
+                <span class="project-status">Public alpha available</span>
+              </div>
             </div>
-            <div class="project-identity">
-              <h3 class="project-title">Veilkeeper</h3>
-              <span class="project-status">Public alpha available</span>
-            </div>
+
+            <p class="project-hook">Your army shrinks the deeper you push.</p>
+
+            <p class="project-desc">
+              Draft your squad, fight on a tactical grid, and decide who stays behind
+              to hold each relay. Every step forward comes at a cost.
+            </p>
           </div>
-
-          <p class="project-hook">Your army shrinks the deeper you push.</p>
-
-          <p class="project-desc">
-            Draft your squad, fight on a tactical grid, and decide who stays behind
-            to hold each relay. Every step forward comes at a cost.
-          </p>
-          <picture>
+          <picture class="project-artwork">
             <source media="(max-width: 640px)" srcset="/assets/hero/veilkeeper-key-art-hero-portrait.webp" width="1100" height="1468">
             <img class="project-art" src="/assets/hero/veilkeeper-key-art-hero.webp" alt="A lone figure faces a glowing rift above a fractured landscape" width="2560" height="1462" loading="lazy">
           </picture>
-          <div class="game-actions">
-            <a class="studio-button" href="/veilkeeper/">Explore Veilkeeper <span aria-hidden="true">→</span></a>
-            <a class="studio-button studio-button-secondary" href={SITE.itchUrl} target="_blank" rel="noopener">Play the free alpha <span aria-hidden="true">↗</span></a>
-            <a class="studio-button studio-button-secondary" href="/play">Wishlist on Steam <span aria-hidden="true">↗</span></a>
+          <div class="project-actions">
+            <div class="game-actions">
+              <a class="studio-button" href="/veilkeeper/">Explore Veilkeeper <span aria-hidden="true">→</span></a>
+              <a class="studio-button studio-button-secondary" href={SITE.itchUrl} target="_blank" rel="noopener">Play the free alpha <span aria-hidden="true">↗</span></a>
+              <a class="studio-button studio-button-secondary" href="/play">Wishlist on Steam <span aria-hidden="true">↗</span></a>
+            </div>
+            <p class="game-availability">Free alpha · Windows &amp; Linux · In active development</p>
           </div>
-          <p class="game-availability">Free alpha · Windows &amp; Linux · In active development</p>
         </div>
       </div>
     </section>
