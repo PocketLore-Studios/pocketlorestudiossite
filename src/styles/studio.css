@@ -326,31 +326,6 @@ a:focus-visible {
   margin-bottom: 18px;
 }
 
-.project-meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: 20px;
-}
-
-.meta-tag {
-  font-size: 11px;
-  font-weight: 500;
-  color: var(--text-muted);
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  padding: 5px 12px;
-  border-radius: 999px;
-  border: 1px solid var(--border);
-  background: rgba(255, 255, 255, 0.01);
-}
-
-.project-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px 28px;
-}
-
 .project-link {
   display: inline-flex;
   align-items: center;
@@ -474,7 +449,6 @@ a:focus-visible {
   .connect-grid { grid-template-columns: 1fr; }
   .footer-inner { flex-direction: column; gap: 4px; align-items: center; }
   .container { width: min(calc(100% - 1.5rem), var(--max-width)); }
-  .project-meta { gap: 6px; }
 }
 
 @media (max-width: 400px) {
@@ -497,20 +471,13 @@ a:focus-visible {
 .studio-button:hover { background: var(--amber-light); }
 .studio-button-secondary { background: transparent; color: var(--amber-light); }
 .studio-button-secondary:hover { background: var(--amber-soft); }
-.game-availability { font-size: .8rem; color: var(--text-secondary); margin-bottom: 1.5rem; }
-.game-loop { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; margin: 2rem 0 1rem; }
-.game-loop img { width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 8px; }
-.game-loop h3 { font-family: 'Cinzel', serif; font-size: 1rem; margin: .75rem 0 .25rem; }
-.game-loop p { font-size: .85rem; color: var(--text-secondary); }
-.development-update { border-top: 1px solid var(--border-hover); padding-top: 1.25rem; display: grid; gap: .5rem; }
-.development-update > p { color: var(--text-secondary); font-size: .9rem; }
+.game-availability { font-size: .8rem; color: var(--text-secondary); margin-top: 1rem; }
 
 @media (max-width: 720px) {
   .topbar-inner { flex-wrap: wrap; padding: .75rem 0; }
   .nav { width: 100%; justify-content: space-between; gap: .5rem; }
 }
 @media (max-width: 640px) {
-  .game-loop { grid-template-columns: 1fr; }
   .project-card { padding: 1.25rem; }
   .studio-button { width: 100%; }
   .project-art { max-height: 400px; object-fit: cover; }
