@@ -6,6 +6,7 @@
   "compatibility_date": "2026-10-19",
   "compatibility_flags": ["nodejs_compat"],
   "observability": { "enabled": true, "head_sampling_rate": 1 },
+  "secrets": { "required": ["TURNSTILE_SECRET", "RESEND_API_KEY"] },
   "assets": {
     "directory": "./dist",
     "binding": "ASSETS",

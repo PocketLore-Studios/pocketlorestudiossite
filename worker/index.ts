@@ -15,9 +15,9 @@ import {
     getCategory,
 } from '../src/lib/feedback.ts';
 
-// Bindings and non-secret vars are generated from wrangler.jsonc.
+// Bindings, vars, and required secret names are generated from wrangler.jsonc.
 // Secrets are provisioned separately using `wrangler secret put`.
-type FeedbackEnv = Env & { TURNSTILE_SECRET: string; RESEND_API_KEY: string };
+type FeedbackEnv = Env;
 
 /** Human-friendly received timestamp, e.g. "Wed, Jul 22, 2026, 11:38 PM UTC". */
 function formatReceived(tz: string): string {
