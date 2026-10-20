@@ -355,11 +355,31 @@ a:focus-visible {
   padding: 28px;
 }
 
-.studio-philosophy {
-  font-size: 18px;
-  color: var(--text-primary);
-  max-width: 62ch;
+.studio-intro,
+.founder-intro h3 {
+  font-family: 'Cinzel', serif;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.4;
   margin-bottom: 1rem;
+}
+
+.studio-philosophy {
+  font-size: 16px;
+  color: var(--text-primary);
+  max-width: 68ch;
+  margin-bottom: 1rem;
+}
+
+.founder-intro {
+  border-top: 1px solid var(--border-hover);
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+}
+
+.founder-intro h3 {
+  font-size: 16px;
+  margin-bottom: .75rem;
 }
 
 .founder-bio {

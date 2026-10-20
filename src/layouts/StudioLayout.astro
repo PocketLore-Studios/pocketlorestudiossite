@@ -1,7 +1,7 @@
 ---
 import '../styles/studio.css';
 interface Props { title?: string; description?: string; noindex?: boolean; canonicalPath?: string }
-const { title = 'PocketLore Studios', description = 'An independent game studio in New York’s Hudson Valley, creating games around discovery and meaningful choices. Explore our debut game, Veilkeeper.', noindex = false, canonicalPath = Astro.url.pathname } = Astro.props;
+const { title = 'PocketLore Studios', description = 'Independent games built around memorable worlds, purposeful systems, and experiences worth returning to. Explore Veilkeeper, our debut tactical RPG.', noindex = false, canonicalPath = Astro.url.pathname } = Astro.props;
 const canonical = new URL(canonicalPath, Astro.site);
 ---
 <!DOCTYPE html>
