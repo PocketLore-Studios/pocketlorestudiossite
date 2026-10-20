@@ -369,6 +369,152 @@ a:focus-visible {
   max-width: 68ch;
 }
 
+/* --- Newsletter --- */
+.newsletter-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+  align-items: start;
+  gap: 2rem;
+  padding: 28px;
+}
+
+.newsletter-copy h3 {
+  font-family: 'Cinzel', serif;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.4;
+  margin-bottom: .5rem;
+}
+
+.newsletter-copy p {
+  color: var(--text-secondary);
+  max-width: 48ch;
+}
+
+.newsletter-embed {
+  min-width: 0;
+}
+
+/* Keep a signup link available when scripts are disabled, blocked, or slow. */
+.newsletter-embed:has(.formkit-form) .newsletter-fallback {
+  display: none;
+}
+
+/* Kit injects inline styles; these scoped overrides keep its behavior and
+   branding while fitting the studio's typography, spacing, and palette. */
+#newsletter .formkit-form[data-uid="aeee3e1f00"] {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  border: 0;
+  background: transparent !important;
+  font-family: inherit;
+  overflow: visible;
+}
+
+#newsletter .formkit-form [data-style="minimal"] {
+  padding: 0;
+}
+
+#newsletter .formkit-header,
+#newsletter .formkit-subheader,
+#newsletter .formkit-background {
+  display: none;
+}
+
+#newsletter .formkit-fields {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: .75rem;
+  margin: 0;
+}
+
+#newsletter .formkit-fields .formkit-field,
+#newsletter .formkit-fields .formkit-submit {
+  min-width: 0;
+  margin: 0;
+}
+
+#newsletter .formkit-input {
+  width: 100%;
+  min-height: 48px;
+  padding: .75rem;
+  font: inherit;
+  color: var(--text-primary) !important;
+  background: var(--bg);
+  border-color: #746b60 !important;
+  border-radius: 8px !important;
+}
+
+#newsletter .formkit-input::placeholder {
+  color: var(--text-muted);
+  opacity: 1;
+}
+
+#newsletter .formkit-submit {
+  min-height: 48px;
+  font: inherit;
+  color: var(--bg) !important;
+  background: var(--amber) !important;
+  border-radius: 8px !important;
+  font-weight: 600 !important;
+}
+
+#newsletter .formkit-submit:hover {
+  background: var(--amber-light) !important;
+}
+
+#newsletter .formkit-submit > span {
+  padding: .75rem 1rem;
+}
+
+#newsletter .formkit-input:focus-visible,
+#newsletter .formkit-submit:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 3px;
+}
+
+#newsletter .formkit-guarantee {
+  margin: .75rem 0 0;
+  color: var(--text-secondary) !important;
+  font-size: 14px !important;
+  text-align: left;
+}
+
+#newsletter .formkit-alert {
+  margin: 0 0 1rem;
+  font: inherit;
+  text-align: left;
+  background: var(--bg);
+}
+
+#newsletter .formkit-alert-error {
+  color: #ffb4a2;
+  border-color: #ba6a56;
+}
+
+#newsletter .formkit-alert-success {
+  color: #b6dfc7;
+  border-color: #719a7d;
+}
+
+#newsletter .formkit-powered-by-convertkit-container {
+  justify-content: flex-start;
+}
+
+#newsletter .formkit-powered-by-convertkit {
+  margin-left: 0;
+}
+
+@media (max-width: 900px) {
+  .newsletter-card { grid-template-columns: minmax(0, 1fr); gap: 1.25rem; }
+}
+
+@media (max-width: 640px) {
+  .newsletter-card { padding: 1.25rem; }
+  #newsletter .formkit-fields { grid-template-columns: minmax(0, 1fr); }
+}
+
 /* --- Connect --- */
 .connect-grid {
   display: grid;
