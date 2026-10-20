@@ -1,6 +1,5 @@
 /* ============================================
-   PocketLore Studios — styles.css
-   Sibling to veilkeepergame.com styling
+   PocketLore Studios - studio theme
    Warm amber palette, shared typography
    ============================================ */
 
@@ -43,9 +42,9 @@
   /* Text — WCAG AA tiers against --bg and --bg-surface.
      --text-muted is the dimmest color allowed for meaningful text
      (nav, labels, tags, footer); darker shades are decorative-only. */
-  --text-primary: #d8d1c8;
-  --text-secondary: #aaa094;
-  --text-muted: #8a8176;
+  --text-primary: #e5ded4;
+  --text-secondary: #bdb3a5;
+  --text-muted: #aaa092;
 
   /* Borders & surfaces */
   --border: color-mix(in srgb, var(--amber) 8%, transparent);
@@ -64,6 +63,7 @@
 
 body {
   font-family: 'Raleway', sans-serif;
+  font-size: 1rem;
   color: var(--text-primary);
   background: var(--bg);
   line-height: 1.7;
@@ -150,17 +150,17 @@ a:focus-visible {
 
 .brand-title {
   font-family: 'Cinzel', serif;
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 600;
   color: var(--text-primary);
   letter-spacing: 1px;
 }
 
 .brand-sub {
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 500;
   color: var(--text-muted);
-  letter-spacing: 2px;
+  letter-spacing: 1px;
   text-transform: uppercase;
 }
 
@@ -171,11 +171,14 @@ a:focus-visible {
 }
 
 .nav a {
-  font-size: 12px;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-size: 14px;
   font-weight: 500;
   color: var(--text-secondary);
   text-transform: uppercase;
-  letter-spacing: 1.5px;
+  letter-spacing: 1px;
   transition: color 0.25s;
 }
 
@@ -196,10 +199,10 @@ a:focus-visible {
 
 .eyebrow {
   display: inline-block;
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 600;
   color: var(--amber);
-  letter-spacing: 3px;
+  letter-spacing: 2px;
   text-transform: uppercase;
   margin-bottom: 20px;
 }
@@ -237,32 +240,32 @@ a:focus-visible {
 }
 
 .lead {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 400;
   color: var(--amber-light);
   margin-bottom: 8px;
 }
 
 .sublead {
-  font-size: 15px;
+  font-size: 16px;
   color: var(--text-secondary);
-  max-width: 440px;
+  max-width: 48ch;
   margin: 0 auto;
   line-height: 1.7;
 }
 
-/* --- Section Heading (eyebrow pattern from Veilkeeper) --- */
+/* --- Section Headings --- */
 .section-heading {
   margin-bottom: 20px;
 }
 
-.section-eyebrow {
-  display: inline-block;
-  font-size: 11px;
+.section-title {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(1.25rem, 2.5vw, 1.5rem);
   font-weight: 600;
-  color: var(--text-muted);
-  letter-spacing: 3px;
-  text-transform: uppercase;
+  color: var(--text-primary);
+  letter-spacing: .04em;
+  line-height: 1.35;
 }
 
 /* --- Project Card --- */
@@ -278,8 +281,8 @@ a:focus-visible {
 }
 
 .project-icon {
-  width: 128px;
-  height: 128px;
+  width: 96px;
+  height: 96px;
   border-radius: 10px;
   border: 1px solid var(--purple-border);
   background: var(--purple-soft);
@@ -296,7 +299,7 @@ a:focus-visible {
 
 .project-title {
   font-family: 'Cinzel', serif;
-  font-size: 20px;
+  font-size: clamp(1.5rem, 3vw, 1.75rem);
   font-weight: 600;
   color: var(--text-primary);
   letter-spacing: 1px;
@@ -304,15 +307,14 @@ a:focus-visible {
 }
 
 .project-status {
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 500;
   color: var(--purple-accessible);
-  letter-spacing: 2px;
-  text-transform: uppercase;
+  letter-spacing: .04em;
 }
 
 .project-hook {
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 500;
   color: var(--amber-light);
   margin-bottom: 10px;
@@ -320,17 +322,18 @@ a:focus-visible {
 }
 
 .project-desc {
-  font-size: 14.5px;
+  font-size: 16px;
   color: var(--text-secondary);
   line-height: 1.75;
   margin-bottom: 18px;
+  max-width: 68ch;
 }
 
 .project-link {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 500;
   color: var(--amber);
   transition: color 0.2s;
@@ -360,7 +363,7 @@ a:focus-visible {
 }
 
 .founder-bio {
-  font-size: 14.5px;
+  font-size: 16px;
   color: var(--text-secondary);
   line-height: 1.75;
   max-width: 68ch;
@@ -384,16 +387,15 @@ a:focus-visible {
 }
 
 .connect-label {
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 500;
   color: var(--text-primary);
 }
 
 .connect-desc {
-  font-size: 11px;
+  font-size: 14px;
   color: var(--text-muted);
-  letter-spacing: 1px;
-  text-transform: uppercase;
+  letter-spacing: .02em;
 }
 
 .email-link {
@@ -401,11 +403,12 @@ a:focus-visible {
   text-align: center;
   padding: 16px;
   margin-top: 10px;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 400;
   color: var(--text-secondary);
   letter-spacing: 0.5px;
   transition: color 0.25s;
+  overflow-wrap: anywhere;
 }
 
 .email-link:hover {
@@ -423,7 +426,7 @@ a:focus-visible {
   justify-content: space-between;
   align-items: center;
   padding: 20px 0 32px;
-  font-size: 12px;
+  font-size: 14px;
   color: var(--text-muted);
   letter-spacing: 0.5px;
 }
@@ -434,8 +437,7 @@ a:focus-visible {
   .section { padding: 2rem 0; }
   .topbar-inner { min-height: 56px; }
   .nav { gap: 1rem; }
-  .nav a { font-size: 11px; letter-spacing: 1px; }
-  .brand-title { font-size: 13px; }
+  .brand-title { font-size: 14px; }
   .connect-grid { grid-template-columns: 1fr; }
   .footer-inner { flex-direction: column; gap: 4px; align-items: center; }
   .container { width: min(calc(100% - 1.5rem), var(--max-width)); }
@@ -444,11 +446,9 @@ a:focus-visible {
 @media (max-width: 400px) {
   .topbar-inner { flex-wrap: wrap; row-gap: 0; padding: 8px 0; }
   .nav { gap: 0.75rem; }
-  .nav a { font-size: 10px; letter-spacing: 0.5px; }
   .brand-sub { display: none; }
   .hero h1 { font-size: 26px; }
-  .project-icon { width: 96px; height: 96px; }
-  .project-title { font-size: 18px; }
+  .project-icon { width: 64px; height: 64px; }
 }
 
 /* The game is part of the studio homepage; detailed pages use the game theme. */
@@ -461,11 +461,13 @@ a:focus-visible {
 .studio-button:hover { background: var(--amber-light); }
 .studio-button-secondary { background: transparent; color: var(--amber-light); }
 .studio-button-secondary:hover { background: var(--amber-soft); }
-.game-availability { font-size: .8rem; color: var(--text-secondary); margin-top: 1rem; }
+.game-availability { font-size: .875rem; color: var(--text-secondary); margin-top: 1rem; }
 
 @media (max-width: 720px) {
-  .topbar-inner { flex-wrap: wrap; padding: .75rem 0; }
+  .topbar-inner { flex-wrap: wrap; padding: .5rem 0; row-gap: .25rem; }
   .nav { width: 100%; justify-content: space-between; gap: .5rem; }
+  .nav a { letter-spacing: .02em; }
+  [id] { scroll-margin-top: 8rem; }
 }
 @media (max-width: 640px) {
   .project-card { padding: 1.25rem; }
