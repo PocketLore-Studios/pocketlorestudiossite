@@ -4,7 +4,7 @@ One static Astro site, deployed with Cloudflare Workers. PocketLore keeps its
 amber studio theme at `/`; Veilkeeper keeps its own theme, navigation, footer,
 and full landing page at `/veilkeeper/`.
 
-Veilkeeper's gameplay, roadmap, press, feedback, security, RSS, and all 13
+Veilkeeper's gameplay, roadmap, press, feedback, security, RSS, and all
 development posts live under `/veilkeeper/`. Its original media URLs are
 preserved under `/assets/`. The original `veilkeeper-landing` checkout is
 unchanged; publish future game website updates from this repository.
@@ -55,8 +55,11 @@ npx wrangler deploy --config wrangler.veilkeeper.jsonc --dry-run
 
 Only `dist/` is uploaded as public assets. Astro source, configuration, local
 settings, and Worker code stay outside that directory. CI checks types, feedback
-validation, redirect behavior, local links, game-page CSP compatibility, RSS,
-and the public asset set. The weekly external link check scans built HTML.
+validation, redirect behavior, local links, game-page CSP compatibility, and the
+public asset set. The built-site guard derives devlog pages and exact RSS links
+from source content, checks the feed homepage, compares the sitemap with rendered
+canonical pages, and verifies sharing images. Counts in its output are a report,
+not a fixed requirement. The weekly external link check scans built HTML.
 
 Recovery checkpoint (2026-10-20): type checks, all 31 Worker tests, the built-site
 guard (23 HTML files and 13 RSS entries), and both deployment dry runs pass.
@@ -64,52 +67,23 @@ Chromium checks at 1440px and 390px also pass for the studio and game pages,
 mobile navigation, devlog lightbox, and feedback category selection. The local
 Worker confirms Steam attribution redirects, game CSP, and real 404 responses.
 Third-party embeds and live feedback delivery still need production verification
-after the hostname and secret configuration below. No cutover has been deployed.
+after the production configuration in the launch checklist. No cutover has been
+deployed.
 
-## Domain cutover
+## Release status and domain cutover
 
-The cutover is prepared but has not been deployed. Keep both domain registrations.
+**Build passed** means automated checks passed for a recorded commit. It does
+not establish that public routing, production secrets, embeds, or delivery work.
+**Release verified** means the deployed commit passed the live acceptance checks
+through its public domains, with dated evidence and studio-owner acceptance.
 
-1. In the `pocketlorestudiossite` Cloudflare Workers Build settings, use this
-   repository, `npm ci` for install, and `npm run deploy` for deployment. The
-   Wrangler `build.command` builds Astro. Keep its existing PocketLore domains
-   attached. The new assets directory is `dist/`, not the repository root.
-2. Add `pocketlorestudios.com` and `www.pocketlorestudios.com` to the existing
-   Turnstile widget's allowed hostnames. Set `TURNSTILE_SECRET` and
-   `RESEND_API_KEY` on the **PocketLore** Worker using the dashboard or
-   `npx wrangler secret put NAME`. Secrets on the old Worker do not transfer
-   automatically. `PUBLIC_TURNSTILE_SITE_KEY` may override the public key at
-   build time if the widget changes.
-3. Deploy PocketLore first with `npm run deploy`. Verify `/veilkeeper/`, its
-   navigation, a devlog, `/veilkeeper/rss.xml`, a feedback submission, and `/play`.
-4. Disable the old Veilkeeper repository's automatic deployments so they cannot
-   restore the old site over the redirect Worker. Then run
-   `npm run deploy:veilkeeper-redirects` from this repository. This replaces the
-   existing Worker named `veilkeepergame`, retaining its domain attachments.
-   Verify both apex and `www` are attached to that Worker before cutover; this
-   configuration deliberately does not create or move custom domains.
+The migration is prepared; release verification remains pending. Follow the
+[16-item launch acceptance checklist](docs/launch.md), including deployment
+order, route expectations, and rollback criteria. Complete phases 1–3 before
+calling the migration complete; continue monitoring in phase 4.
 
-| Incoming URL | Destination | Status |
-| --- | --- | --- |
-| `veilkeepergame.com/` | `pocketlorestudios.com/veilkeeper/` | 308 |
-| `veilkeepergame.com/play` or `/play/` | Existing Veilkeeper Steam store page | 302 |
-| `veilkeepergame.com/devlog/devlog-09/` | `pocketlorestudios.com/veilkeeper/devlog/devlog-09/` | 308 |
-| `veilkeepergame.com/devlog/post.html?slug=devlog-09` | Same migrated post | 308 |
-| `veilkeepergame.com/gameplay/`, `/roadmap/`, `/press/`, `/feedback/`, `/security/` | Matching `/veilkeeper/` page | 308 |
-| `veilkeepergame.com/rss.xml` | `pocketlorestudios.com/veilkeeper/rss.xml` | 308 |
-| `pocketlorestudios.com/play` or `/veilkeeper/play` | Existing Veilkeeper Steam store page | 302 |
-
-The redirect Worker accepts both the apex and `www` domains and preserves query
-parameters, including Steam UTM attribution. Unknown paths keep their identity
-and reach a real 404. Do not add a catch-all domain forwarding rule ahead of it:
-that would bypass the `/play` exception. Remove or adjust any existing rules
-that take precedence during cutover. Old cached cross-origin feedback forms
-must be reloaded at their new URL; the active form submits on PocketLore.
-
-No mail DNS records, sending domains, or `@veilkeepergame.com` contact addresses
-change. The feedback sender remains `feedback.veilkeepergame.com` and delivery
-still goes to `support@veilkeepergame.com`.
-
-Rollback: redeploy the original Veilkeeper repository to `veilkeepergame` and
-re-enable its build hook. Keep the old checkout until the migration is verified.
-Permanent redirects may be cached, so verify the new site before switching.
+Green CI does not authorize domain routing, production-secret changes, or
+replacement of the redirect Worker. These require deliberate studio-owner
+approval for the specific release. GitHub workflows here only validate; review
+Cloudflare build hooks separately. Routine site updates can use automatic
+deployment after migration acceptance, without granting migration authority.
