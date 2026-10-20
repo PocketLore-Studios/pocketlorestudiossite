@@ -13,6 +13,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+          cache: npm
+
+      - run: npm ci
+      - run: npm run build
+
       - name: Check links in HTML
         uses: lycheeverse/lychee-action@v2
         with:
@@ -22,8 +30,8 @@ jobs:
           # links are fine; a truly dead page still returns 404.
           args: >-
             --no-progress
-            --root-dir ${{ github.workspace }}
+            --root-dir ${{ github.workspace }}/dist
             --accept '200..=299,403,429'
             --remap 'https://discord.com/invite/(.*) https://discord.com/api/v10/invites/$1'
-            './*.html'
+            './dist/**/*.html'
           fail: true

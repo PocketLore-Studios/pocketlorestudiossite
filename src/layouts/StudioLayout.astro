@@ -1,0 +1,86 @@
+---
+import '../styles/studio.css';
+interface Props { title?: string; description?: string; noindex?: boolean; canonicalPath?: string }
+const { title = 'PocketLore Studios', description = 'Independent game studio in New York’s Hudson Valley. Play the free Veilkeeper tactical RPG alpha, follow development, and wishlist on Steam.', noindex = false, canonicalPath = Astro.url.pathname } = Astro.props;
+const canonical = new URL(canonicalPath, Astro.site);
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content={description}>
+  <title>{title}</title>
+  <link rel="canonical" href={canonical}>
+  <meta property="og:title" content={title}>
+  <meta property="og:description" content={description}>
+  <meta property="og:type" content="website">
+  <meta property="og:url" content={canonical}>
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content={title}>
+  <meta name="twitter:description" content={description}>
+  <meta property="og:image" content="https://pocketlorestudios.com/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:image" content="https://pocketlorestudios.com/assets/og-image.png">
+  <link rel="preload" href="/assets/fonts/cinzel-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/raleway-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <meta property="og:site_name" content="PocketLore Studios">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "PocketLore Studios",
+    "url": "https://pocketlorestudios.com/",
+    "logo": "https://pocketlorestudios.com/assets/apple-touch-icon.png",
+    "slogan": "Stories Worth Discovering",
+    "email": "contact@pocketlorestudios.com",
+    "founder": {
+      "@type": "Person",
+      "name": "John Serwatka"
+    },
+    "sameAs": [
+      "https://bsky.app/profile/veilkeepergame.bsky.social",
+      "https://x.com/Veilkeepergame"
+    ]
+  }
+  </script>
+
+  {noindex && <meta name="robots" content="noindex">}
+</head>
+<body>
+  <a class="skip-link" href="#top">Skip to content</a>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a class="brand" href="/" aria-label="PocketLore Studios home">
+        <img class="brand-logo" src="/assets/pocketlore-mark.svg" alt="PocketLore Studios logo" width="72" height="72">
+        <div class="brand-text">
+          <div class="brand-title">PocketLore Studios</div>
+          <div class="brand-sub">Independent Game Studio</div>
+        </div>
+      </a>
+      <nav class="nav" aria-label="Primary navigation">
+        <a href="/#veilkeeper">Veilkeeper</a>
+        <a href="/#founder">Founder</a>
+        <a href="/#newsletter">Newsletter</a>
+        <a href="/#connect">Connect</a>
+      </nav>
+    </div>
+  </header>
+
+
+  <main id="top"><slot /></main>
+  <footer class="footer">
+    <div class="container footer-inner">
+      <span>PocketLore Studios · Hudson Valley, NY</span>
+      <span>© {new Date().getFullYear()}</span>
+    </div>
+  </footer>
+
+
+</body>
+</html>

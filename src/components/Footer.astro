@@ -1,0 +1,46 @@
+---
+import { SITE } from '../lib/site';
+---
+<footer class="site-footer">
+    <div class="footer-inner">
+
+        <div class="footer-left">
+            <div class="footer-brand">
+                 <a
+                    class="footer-studio-link"
+                    href={SITE.studioUrl}
+                    aria-label="PocketLore Studios home"
+                >© PocketLore Studios.</a> All rights reserved.
+            </div>
+
+            <div class="footer-follow-row">
+                <span class="footer-follow">Follow development:</span>
+
+                <div class="footer-socials">
+                    <a href={SITE.social.discord} target="_blank" rel="noopener noreferrer" aria-label="Discord">
+                        <img src="/assets/icons/discord.svg" alt="Discord" />
+                    </a>
+
+                    <a href={SITE.social.bluesky} target="_blank" rel="noopener noreferrer" aria-label="Bluesky">
+                        <img src="/assets/icons/bluesky.svg" alt="Bluesky" />
+                    </a>
+
+                    <a href={SITE.social.x} target="_blank" rel="noopener noreferrer" aria-label="Twitter / X">
+                        <img src="/assets/icons/x.svg" alt="Twitter / X" />
+                    </a>
+                </div>
+                <span class="footer-divider">•</span>
+                <a href="/veilkeeper/press">Press</a>
+                <span class="footer-divider">•</span>
+                <a href="/veilkeeper/feedback">Feedback</a>
+                <span class="footer-divider">•</span>
+                <a href="/veilkeeper/security">Security</a>
+            </div>
+        </div>
+
+        <div class="footer-right">
+            <a href="#top" class="back-to-top">Back to top ↑</a>
+        </div>
+
+    </div>
+</footer>

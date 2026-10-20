@@ -1,0 +1,20 @@
+import { defineCollection } from 'astro:content';
+import { z } from 'astro/zod';
+import { glob } from 'astro/loaders';
+
+const devlog = defineCollection({
+    loader: glob({ pattern: '**/*.md', base: './src/content/devlog' }),
+    schema: z.object({
+        label: z.string(),
+        title: z.string(),
+        date: z.coerce.date(),
+        image: z.string(),
+        alt: z.string().min(1),
+        // Optional looping MP4; when present, `image` doubles as its poster
+        // frame and remains the OG image.
+        video: z.string().optional(),
+        summary: z.string()
+    })
+});
+
+export const collections = { devlog };

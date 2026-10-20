@@ -1,0 +1,323 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CurrentFocus from '../../components/CurrentFocus.astro';
+import DevlogMedia from '../../components/DevlogMedia.astro';
+import { getSortedDevlogs, getPostUrl } from '../../lib/devlog';
+import { SITE } from '../../lib/site';
+
+const devlogs = await getSortedDevlogs();
+const latest = devlogs[0];
+
+// The run, in the order a player meets it. Screenshots are the press captures
+// from the v0.1.0.0 alpha (see src/pages/press/index.astro); the copy matches
+// the press kit's "The demo run" so the two pages never disagree. The draft and
+// leave-behind screens are mostly empty frame around a small central menu, so
+// the homepage uses 800x450 crops of that menu (public/assets/home/):
+//   ffmpeg -i press-squad-draft.webp -vf crop=800:450:560:320 -c:v libwebp -lossless 1 -compression_level 6 loop-draft.webp
+//   ffmpeg -i press-leave-behind.webp -vf crop=800:450:560:315 -c:v libwebp -lossless 1 -compression_level 6 loop-leave-behind.webp
+const loop = [
+    {
+        title: 'Draft your squad',
+        text: 'Pick six units from a pool of twelve - Knights, Archers, Assassins and Maulers - with the first fight’s opposition shown up front.',
+        src: '/assets/home/loop-draft.webp',
+        width: 800,
+        height: 450,
+        alt: 'The draft screen reading "Squad: 6 / 6" above a grid of twelve unit choices, with a header noting the first fight has three enemies: 1 Knight, 1 Archer, 1 Mauler',
+    },
+    {
+        title: 'Fight on the grid',
+        text: 'Turn-based tactics with facing and positional damage. Every attack shows its damage, and whether it draws a counter, before you commit.',
+        src: '/assets/press/press-damage-preview.webp',
+        width: 1920,
+        height: 1080,
+        alt: 'Attack confirmation showing 32 damage, the target dropping from 45 to 13 HP, and "No counter", above a prompt reading "Click again to confirm"',
+    },
+    {
+        title: 'Leave one behind',
+        text: 'Between fights, one unit stays to hold the relay. Your force shrinks from six to four while the enemy grows from three to five.',
+        src: '/assets/home/loop-leave-behind.webp',
+        width: 800,
+        height: 450,
+        alt: 'A screen reading "The signal grows weak - Leave a Unit Behind to hold the connection", listing six surviving units, noting the next fight has four enemies, and "Leaving behind: 0 / 1"',
+    },
+];
+---
+<BaseLayout
+        title="Veilkeeper | Tactical RPG by PocketLore Studios"
+        description="Veilkeeper is a tactical RPG where your army shrinks the deeper you push. Draft a squad, fight, and choose who stays behind. Free alpha on itch.io for Windows and Linux."
+>
+  <section class="hero">
+    {/* Decorative: the hero's meaning is carried by the heading and logo beside it,
+        and .hero::before lays the readability gradients over the top.
+
+        Two crops because the hero's aspect swings from ~1.7 on desktop to ~0.35 on a
+        phone. The landscape key art centre-crops to empty sky at that width, so narrow
+        viewports get the portrait composition, which runs top-to-bottom and keeps both
+        the rift and the figure in frame. */}
+    <picture>
+      <source
+              media="(max-width: 720px)"
+              srcset="/assets/hero/veilkeeper-key-art-hero-portrait.webp"
+              width="1100"
+              height="1468"
+      >
+      <img
+              class="hero-bg"
+              src="/assets/hero/veilkeeper-key-art-hero.webp"
+              alt=""
+              width="2560"
+              height="1462"
+              fetchpriority="high"
+      >
+    </picture>
+    <div class="container">
+      <div class="hero-content">
+        <h1>Your army shrinks the deeper you push.</h1>
+        <p class="lead">
+          Draft a squad, fight on a tactical grid, and after every battle choose one unit to
+          stay behind and hold the relay. Each fight is bigger than the last. How far can you
+          push before the connection breaks?
+        </p>
+
+        {/* One filled action. Discord lives in "Follow the project" below. */}
+        <div class="actions">
+          <a class="button button--primary" href={SITE.itchUrl} target="_blank" rel="noopener noreferrer">
+            Play the alpha
+          </a>
+
+          <a class="button button--secondary" href={SITE.steamUrl} target="_blank" rel="noopener noreferrer">
+            Wishlist on Steam
+          </a>
+        </div>
+
+        <p class="availability">
+          Free on itch.io · Windows and Linux · Mouse, keyboard, or controller
+        </p>
+      </div>
+    </div>
+  </section>
+
+  {/* Homepage only by design: a persistent bar on every page costs too much
+      vertical space on mobile. /roadmap shows the same SITE.currentFocus. */}
+  <section class="focus-band" aria-label="Current development focus">
+    <div class="container">
+      <CurrentFocus />
+    </div>
+  </section>
+
+  {/* id="features" rather than "gameplay": this replaced the old feature-card
+      section, and /#features links are already out in the wild. */}
+  <section id="features" class="section">
+    <div class="container">
+      <div class="section-heading">
+        <h2>How a run plays</h2>
+        <p>
+          The alpha is a short expedition: three fights, about five minutes, and one hard
+          choice between each of them.
+        </p>
+      </div>
+
+      <ol class="loop-steps">
+        {loop.map((step, index) => (
+          <li class="card surface loop-step">
+            <img src={step.src} alt={step.alt} width={step.width} height={step.height} loading="lazy">
+            <div class="loop-step-body">
+              <span class="phase-kicker">Step {index + 1}</span>
+              <h3>{step.title}</h3>
+              <p>{step.text}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+
+      {/* The early-development notice moved here from the hero: it is about what
+          these screens show, so it sits beside them. */}
+      <p class="loop-note">
+        Screens from the v0.1 alpha build. Veilkeeper is in active early development: the alpha
+        is the tactical combat layer, unit and terrain art is placeholder, and everything shown
+        may change.
+      </p>
+
+      <div class="actions loop-actions">
+        <a class="button button--primary" href={SITE.itchUrl} target="_blank" rel="noopener noreferrer">
+          Play the free alpha
+        </a>
+        <a class="button button--secondary" href="/veilkeeper/press/#screenshots">
+          More screenshots
+        </a>
+      </div>
+    </div>
+  </section>
+
+  {/* A taste of the combat identity only - the detail and the unit roster
+      live on /gameplay. */}
+  <section id="combat" class="section">
+    <div class="container">
+      <div class="section-heading">
+        <h2>Tactics start with position</h2>
+        <p>
+          Facing, attack range, counters, and positional damage make where you stand as
+          important as who you bring.
+        </p>
+      </div>
+
+      <div class="feature-grid feature-grid--3">
+        <article class="card surface">
+          <h3>Flank</h3>
+          <p>Line up side and rear attacks for extra damage.</p>
+        </article>
+        <article class="card surface">
+          <h3>Anticipate</h3>
+          <p>See whether an enemy can counter before you commit.</p>
+        </article>
+        <article class="card surface">
+          <h3>Build a squad</h3>
+          <p>Combine distinct unit roles, then adapt as the expedition forces you to leave them behind.</p>
+        </article>
+      </div>
+
+      <div class="actions combat-actions">
+        <a class="button button--secondary" href="/veilkeeper/gameplay/">
+          Explore combat and units&nbsp;<span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="section">
+    <div class="container">
+      {/* Deliberately unboxed: cards on this page mark discrete things (steps,
+          combat ideas, the latest update), and this is the game's thesis. */}
+      <div class="about-statement">
+        <h2>What Veilkeeper is aiming for</h2>
+        <p>
+          Veilkeeper is built around the tension between presence and absence. You build
+          something, you leave, the world keeps moving, and the choices you made before leaving
+          determine what you come back to.
+        </p>
+        <p>
+          The fantasy is not just winning fights. It is holding a fragile line, deciding what can
+          be saved, and building something worth defending when you return.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  {/* The latest devlog card - its image and copy change with every new post. */}
+  <section id="status" class="section">
+    <div class="container">
+      <div class="section-heading">
+        <h2>Development Status</h2>
+        <p>
+          What is changing in the game right now, from the latest development update.
+        </p>
+      </div>
+
+      {latest ? (
+        <article class="status-update surface">
+          <DevlogMedia entry={latest} href={getPostUrl(latest)} class="status-update-image" />
+          <div class="status-update-body">
+            <p class="status-update-caption">
+              <strong>{latest.data.label} - {latest.data.title}</strong>
+              <br>
+              {latest.data.summary}
+            </p>
+            <a href="/veilkeeper/devlog/" class="link-row status-update-link">
+              <div>
+                <strong>View all updates</strong>
+                <span>Browse the development log</span>
+              </div>
+              <span>↗</span>
+            </a>
+          </div>
+        </article>
+      ) : (
+        <p>No updates yet.</p>
+      )}
+    </div>
+  </section>
+
+  {/* id="roadmap" kept so old /#roadmap links land on a pointer to /roadmap/
+      instead of the top of the page. The layers themselves live in
+      src/lib/roadmap.ts and render on /roadmap. */}
+  <section id="roadmap" class="section">
+    <div class="container">
+      <div class="roadmap-teaser">
+        <div>
+          <h2>Where Veilkeeper is going</h2>
+          <p>
+            Veilkeeper is being built outward from its tactical core, toward the Home Shard, the
+            Rift Campaign, and optional community systems.
+          </p>
+        </div>
+        <a class="button button--secondary" href="/veilkeeper/roadmap/">
+          Explore the roadmap&nbsp;<span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="follow" class="section">
+    <div class="container grid-2">
+      <div class="panel surface">
+        <h3>Play and tell us</h3>
+        <p>
+          Feedback from these early builds shapes what comes next - what worked, what did not,
+          and anything that felt off.
+        </p>
+
+        <div class="direct-links">
+          <a class="link-row" href={SITE.itchUrl} target="_blank" rel="noopener noreferrer">
+            <div>
+              <strong>Play the alpha</strong>
+              <span>Free on itch.io for Windows and Linux</span>
+            </div>
+            <span aria-hidden="true">↗</span>
+          </a>
+
+          <a class="link-row" href="/veilkeeper/feedback/">
+            <div>
+              <strong>Send feedback</strong>
+              <span>Bugs, balance notes, and first impressions</span>
+            </div>
+            <span aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="panel surface">
+        <h3>Follow the project</h3>
+        <p>
+          Wishlist to hear about releases, or join the community to follow development as it
+          happens.
+        </p>
+
+        <div class="direct-links">
+          <a class="link-row" href={SITE.steamUrl} target="_blank" rel="noopener noreferrer">
+            <div>
+              <strong>Wishlist on Steam</strong>
+              <span>Get notified about new releases</span>
+            </div>
+            <span aria-hidden="true">↗</span>
+          </a>
+
+          <a class="link-row" href={SITE.social.discord} target="_blank" rel="noopener noreferrer">
+            <div>
+              <strong>Discord</strong>
+              <span>Community and project discussion</span>
+            </div>
+            <span aria-hidden="true">↗</span>
+          </a>
+
+          <a class="link-row" href={SITE.social.bluesky} target="_blank" rel="noopener noreferrer">
+            <div>
+              <strong>Bluesky</strong>
+              <span>Short-form development posts</span>
+            </div>
+            <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

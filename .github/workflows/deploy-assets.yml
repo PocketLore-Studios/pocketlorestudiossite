@@ -1,8 +1,6 @@
 name: Deploy asset guard
 
-# Fails if wrangler's static-asset upload set would include a private local file such as
-# .claude/settings.local.json (OPS-9). It runs `wrangler deploy --dry-run` on a temporary copy;
-# nothing is deployed and no Cloudflare credentials are used.
+# Builds Astro and checks that dist/ contains only public output and valid links.
 on:
   push:
     branches: [main]
@@ -20,7 +18,13 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 22 # wrangler 4.148.0 requires node >= 22
+          node-version-file: .node-version
+          cache: npm
+
+      - run: npm ci
+      - run: npm run types
+      - run: npm run check
+      - run: npm test
 
       - name: Check the deployment asset set
         run: bash .github/scripts/check-deploy-assets.sh

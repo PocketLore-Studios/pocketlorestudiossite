@@ -1,9 +1,24 @@
 {
+  "$schema": "./node_modules/wrangler/config-schema.json",
   "name": "pocketlorestudiossite",
-  "compatibility_date": "2026-07-15",
+  "main": "worker/index.ts",
+  "build": { "command": "npm run build" },
+  "compatibility_date": "2026-10-19",
+  "compatibility_flags": ["nodejs_compat"],
+  "observability": { "enabled": true, "head_sampling_rate": 1 },
   "assets": {
-    "directory": "./",
+    "directory": "./dist",
+    "binding": "ASSETS",
+    "run_worker_first": ["/api/*"],
     "not_found_handling": "404-page",
-    "html_handling": "auto-trailing-slash"
+    "html_handling": "force-trailing-slash"
+  },
+  "vars": {
+    "ALLOWED_HOSTNAMES": "pocketlorestudios.com,www.pocketlorestudios.com",
+    "ALLOWED_ORIGINS": "https://pocketlorestudios.com,https://www.pocketlorestudios.com",
+    "TURNSTILE_ACTION": "feedback",
+    "RESEND_FROM_ADDRESS": "Veilkeeper Feedback <noreply@feedback.veilkeepergame.com>",
+    "FEEDBACK_DESTINATION": "support@veilkeepergame.com",
+    "FEEDBACK_TIMEZONE": "America/New_York"
   }
 }

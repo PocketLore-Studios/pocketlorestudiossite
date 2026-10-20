@@ -1,0 +1,9 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  // Replaces the existing Veilkeeper Worker after the PocketLore site is live.
+  // Its existing custom domains remain attached; no DNS or mail changes needed.
+  "name": "veilkeepergame",
+  "main": "worker/veilkeeper-redirects.ts",
+  "compatibility_date": "2026-10-19",
+  "observability": { "enabled": true, "head_sampling_rate": 1 }
+}

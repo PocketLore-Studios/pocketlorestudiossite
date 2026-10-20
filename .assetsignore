@@ -1,9 +1,0 @@
-.git/
-.github/
-.gitignore
-.idea/
-.claude/
-.assetsignore
-wrangler.jsonc
-*.md
-.wrangler/

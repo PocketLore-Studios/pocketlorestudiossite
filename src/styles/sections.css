@@ -1,0 +1,953 @@
+.hero {
+    position: relative;
+    display: grid;
+    align-items: end;
+    min-height: 96vh;
+    overflow: hidden;
+    background: #08050f;
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: var(--hero-overlay-top), var(--hero-overlay-side);
+}
+
+.hero-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    transform: scale(1.03);
+    filter: saturate(1.03);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 770px;
+    padding: 116px 0 74px;
+}
+
+.eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-4);
+    margin-bottom: var(--space-8);
+    padding: var(--space-3) var(--space-5);
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-pill);
+    background: var(--glass-pill);
+    color: var(--ember);
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+}
+
+/* The one paragraph under the headline: a step up from body text, but not
+   bold - the headline carries the weight. */
+.lead {
+    margin: 0 0 var(--space-13);
+    max-width: 640px;
+    color: var(--text-bright);
+    font-size: clamp(1.08rem, 1.6vw, 1.22rem);
+    line-height: 1.65;
+}
+
+.actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-6);
+    margin-bottom: var(--space-8);
+}
+
+/* Inline style attributes are blocked by the CSP, so variants live here. */
+.actions--center {
+    justify-content: center;
+}
+
+.notice {
+    max-width: 780px;
+    color: var(--text-soft);
+    font-size: var(--font-size-sm);
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--space-8);
+}
+
+/* Homepage combat teaser: three short callouts. */
+.feature-grid--3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.combat-actions {
+    margin: var(--space-10) 0 0;
+}
+
+/* ---------- /gameplay ---------- */
+
+.gameplay-subhead {
+    margin: 0 0 var(--space-8);
+    font-size: clamp(1.3rem, 2.2vw, 1.7rem);
+    color: var(--ember);
+}
+
+.gameplay-figure {
+    max-width: 760px;
+    margin: var(--space-12) auto 0;
+}
+
+.gameplay-figure img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius-lg);
+}
+
+.gameplay-figure figcaption {
+    margin-top: var(--space-4);
+    color: var(--text-faint);
+    font-size: var(--font-size-sm);
+    text-align: center;
+}
+
+.unit-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--space-8);
+}
+
+.unit-card {
+    display: flex;
+    flex-direction: column;
+}
+
+.unit-card h3 {
+    margin-bottom: var(--space-2);
+}
+
+.card .unit-role {
+    margin: 0 0 var(--space-5);
+    color: var(--ember);
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+}
+
+/* Pinned to the card bottom so the rows line up across uneven summaries. */
+.unit-stats {
+    display: grid;
+    gap: var(--space-2);
+    margin: auto 0 0;
+    padding-top: var(--space-7);
+}
+
+.unit-stats > div {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-4);
+    padding-top: var(--space-2);
+    border-top: 1px solid var(--border-subtle);
+    font-size: var(--font-size-sm);
+}
+
+.unit-stats dt {
+    color: var(--text-faint);
+    font-weight: 400;
+}
+
+.unit-stats dd {
+    margin: 0;
+    color: var(--text-bright);
+    font-weight: 600;
+}
+
+.gameplay-actions {
+    margin: var(--space-11) 0 0;
+}
+
+/* Platform/price facts directly under the hero download button. */
+.availability {
+    margin: 0 0 var(--space-6);
+    color: var(--text-bright);
+    font-size: var(--font-size-body);
+    font-weight: 600;
+}
+
+/* "How a run plays": three screenshot cards in play order. */
+.loop-steps {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-8);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.loop-step {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    overflow: hidden;
+}
+
+.loop-step img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-bottom: 1px solid var(--line);
+}
+
+.loop-step-body {
+    padding: var(--space-9) var(--space-10) var(--space-10);
+}
+
+.loop-step-body h3 {
+    margin-top: var(--space-3);
+}
+
+/* Carries the early-development notice, so it reads as body copy, not fine print. */
+.loop-note {
+    max-width: var(--measure);
+    margin: var(--space-7) 0 0;
+    color: var(--text-soft);
+    font-size: var(--font-size-sm);
+}
+
+.loop-actions {
+    margin: var(--space-10) 0 0;
+}
+
+/* "Currently building" (CurrentFocus.astro). On the homepage it is a slim
+   band between the hero and the first section; on /roadmap it sits in a card. */
+.focus-band {
+    border-bottom: 1px solid var(--border-soft);
+    background: var(--surface-overlay-soft);
+}
+
+.current-focus {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: var(--space-2) var(--space-4);
+    margin: 0;
+    padding: var(--space-6) 0;
+    font-size: var(--font-size-body);
+}
+
+.current-focus-label {
+    color: var(--ember);
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+}
+
+.current-focus-sep {
+    color: var(--text-faint);
+}
+
+.current-focus-value {
+    color: var(--text-bright);
+    font-weight: 600;
+}
+
+.current-focus-link {
+    margin-left: auto;
+    color: var(--veil-2);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.current-focus-link:hover,
+.current-focus-link:focus-visible {
+    text-decoration: underline;
+}
+
+.roadmap-focus {
+    margin-bottom: var(--space-10);
+    padding: 0 var(--space-10);
+}
+
+/* A lone full-width panel would run its prose far past a readable measure. */
+/* Homepage "What Veilkeeper is aiming for": unboxed on purpose, so the
+   page's cards keep meaning "a discrete thing". The rule above the heading is
+   a relay signal - a lit node with the line fading out from it. */
+.about-statement {
+    position: relative;
+    max-width: 880px;
+    padding-top: var(--space-12);
+}
+
+.about-statement::before,
+.about-statement::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.about-statement::before {
+    width: min(320px, 70%);
+    height: 1px;
+    background: linear-gradient(90deg, var(--veil-2) 0%, rgba(158, 109, 255, 0.35) 40%, transparent 100%);
+}
+
+.about-statement::after {
+    width: 7px;
+    height: 7px;
+    margin-top: -3px;
+    border-radius: 50%;
+    background: var(--ember);
+    box-shadow: 0 0 12px var(--ember), var(--shadow-brand);
+}
+
+.about-statement h2 {
+    margin: 0 0 var(--space-8);
+    font-size: clamp(1.5rem, 2.4vw, 2rem);
+    line-height: 1.15;
+}
+
+.about-statement p {
+    max-width: var(--measure);
+    margin: 0;
+    color: var(--text-soft);
+    font-size: clamp(1.04rem, 1.4vw, 1.15rem);
+    line-height: 1.75;
+}
+
+.about-statement p + p {
+    margin-top: var(--space-7);
+}
+
+/* Homepage pointer to /roadmap: an unboxed row - copy on the left, button on
+   the right - set off by hairlines rather than a card. */
+.roadmap-teaser {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-8) var(--space-11);
+    padding: var(--space-12) 0;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+}
+
+.roadmap-teaser > div {
+    flex: 1 1 420px;
+}
+
+.roadmap-teaser h2 {
+    margin: 0 0 var(--space-4);
+    font-size: clamp(1.25rem, 2vw, 1.5rem);
+    line-height: 1.2;
+}
+
+.roadmap-teaser p {
+    max-width: var(--measure);
+    margin: 0;
+    color: var(--muted);
+}
+
+/* /roadmap: the description reads as body copy above the point list. */
+.roadmap-description {
+    margin: 0 0 var(--space-5);
+    color: var(--text-soft);
+}
+
+.roadmap-disclaimer {
+    margin: var(--space-10) 0 0;
+}
+
+.roadmap-actions {
+    margin: var(--space-8) 0 0;
+}
+
+.status-update {
+    display: grid;
+    /* The image column matches .status-update-image's max-width; a fractional
+       column outgrew it and left a gap between image and text. */
+    grid-template-columns: minmax(0, 420px) minmax(280px, 1fr);
+    gap: var(--space-11);
+    align-items: center;
+    padding: var(--space-11);
+}
+
+.status-update-image {
+    width: 100%;
+    max-width: 420px;
+    height: auto;
+    border-radius: var(--radius-lg);
+}
+
+.status-update-body {
+    min-width: 0;
+}
+
+.status-update-caption {
+    margin: 0;
+    line-height: 1.7;
+    color: var(--text);
+}
+
+.status-list {
+    display: grid;
+    gap: var(--space-7);
+}
+
+.status-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) auto;
+    gap: var(--space-4) var(--space-8);
+    align-items: center;
+}
+
+.status-name {
+    margin-bottom: var(--space-2);
+    font-weight: 700;
+}
+
+.roadmap {
+    display: grid;
+    gap: var(--space-8);
+}
+
+.roadmap-phase {
+    position: relative;
+    overflow: hidden;
+    padding: var(--space-10) var(--space-10) var(--space-9) 26px;
+}
+
+.roadmap-phase::before {
+    content: "";
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 4px;
+    background: var(--phase-color, var(--veil));
+}
+
+.phase-expedition { --phase-color: #67d6ff; }
+.phase-shard { --phase-color: #f7bd6f; }
+.phase-campaign { --phase-color: #ffa971; }
+.phase-community { --phase-color: #ff75c6; }
+
+.phase-top {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: var(--space-5);
+    margin-bottom: var(--space-4);
+}
+
+.phase-kicker {
+    color: var(--text-faint);
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+}
+
+.phase-title {
+    margin: 0;
+    font-size: clamp(1.15rem, 2vw, 1.55rem);
+    line-height: 1.1;
+}
+
+.phase-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+    margin-bottom: var(--space-5);
+}
+
+.phase-tag,
+.phase-status {
+    display: inline-flex;
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid var(--border-medium);
+    border-radius: var(--radius-pill);
+    background: var(--surface-overlay-strong);
+    color: var(--text-bright);
+    font-size: var(--font-size-sm);
+}
+
+.phase-list {
+    margin: 0;
+    padding-left: var(--space-9);
+    color: var(--muted);
+}
+
+.phase-list li + li {
+    margin-top: var(--space-2);
+}
+
+.direct-links {
+    display: grid;
+    gap: var(--space-5);
+    margin-top: var(--space-8);
+}
+
+.footer-brand-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-5);
+    text-decoration: none;
+    color: inherit;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.section-heading.text-center{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.section-heading h1{
+    color: var(--ember);
+}
+
+.devlog-list {
+    display: grid;
+    gap: var(--space-11);
+}
+
+.devlog-entry {
+    max-width: 520px;
+    margin: 0 auto;
+    padding: var(--space-11);
+}
+
+.devlog-meta {
+    margin-bottom: var(--space-7);
+    color: var(--muted);
+    text-align: center;
+    font-size: var(--font-size-sm);
+}
+
+.devlog-entry h3 {
+    text-shadow:
+            0 1px 2px rgba(255, 190, 110, 0.14),
+            0 2px 6px rgba(140, 110, 255, 0.06);
+    text-align: center;
+    margin: 0 0 var(--space-8);
+}
+
+/* Direct children only: a video's link sits inside .video-frame, which takes
+   the sizing so the pause toggle lines up with the video's corner. */
+.devlog-entry > .media-link,
+.devlog-entry > .video-frame {
+    width: 100%;
+    max-width: 360px;
+    display: block;
+    border-radius: var(--radius-lg);
+    margin: 18px auto 20px;
+}
+
+.devlog-entry p {
+    margin: 0;
+    color: var(--muted);
+}
+
+.devlog-read-more {
+    display: inline-block;
+    margin-top: var(--space-8);
+    color: var(--text);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.devlog-read-more:hover {
+    color: var(--ember);
+}
+
+.devlog-post {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: var(--space-11);
+}
+
+.devlog-post-header {
+    margin-bottom: var(--space-11);
+    text-align: center;
+}
+
+.devlog-post-title {
+    margin: 0;
+    color: var(--text);
+    text-shadow:
+            0 1px 2px rgba(255, 190, 110, 0.14),
+            0 2px 6px rgba(140, 110, 255, 0.06);
+}
+
+.devlog-post-media {
+    margin: 0 0 var(--space-11);
+}
+
+.devlog-post-media > .media-link,
+.devlog-post-media > .video-frame {
+    width: 100%;
+    max-width: 480px;
+    display: block;
+    margin: 0 auto;
+    border-radius: var(--radius-lg);
+}
+
+.devlog-post-content {
+    max-width: 640px;
+    margin: 0 auto;
+}
+
+.devlog-post-content p,
+.devlog-post-content ul,
+.devlog-post-content h2 {
+    margin-top: 0;
+    margin-bottom: var(--space-8);
+}
+
+.devlog-post-content p {
+    color: var(--muted);
+}
+
+.devlog-post-content h2 {
+    color: var(--ember);
+    font-family: 'Cinzel', serif;
+    font-size: 1.35rem;
+    line-height: 1.15;
+}
+
+.devlog-post-content ul {
+    padding-left: var(--space-9);
+    color: var(--muted);
+}
+
+.devlog-post-content li + li {
+    margin-top: var(--space-2);
+}
+
+.devlog-post-nav {
+    max-width: 640px;
+    margin: var(--space-11) auto 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-6);
+    flex-wrap: wrap;
+}
+
+.devlog-nav-spacer {
+    min-width: 140px;
+}
+
+.site-footer {
+    margin-top: 80px;
+    padding: 40px 20px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+.footer-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.footer-left {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.footer-follow {
+    font-size: var(--font-size-sm);
+    opacity: 0.65;
+}
+
+/* Wraps because the row grew past a phone viewport once Press joined the
+   Feedback/Security links - without this the whole page scrolls sideways. */
+.footer-follow-row{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+}
+
+.footer-socials {
+    display: flex;
+    gap: 10px;
+}
+
+.footer-socials img {
+    width: 22px;
+    height: 22px;
+    opacity: 0.7;
+    transition: all 0.2s ease;
+}
+
+.footer-socials a:hover img {
+    opacity: 1;
+    transform: translateY(-2px);
+}
+
+.footer-socials a {
+    display: inline-flex;
+    padding: 6px;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+}
+
+.footer-socials svg {
+    width: 22px;
+    height: 22px;
+    color: rgba(255,255,255,0.7);
+    transition: all 0.2s ease;
+}
+
+.footer-socials a:hover svg {
+    color: #caa96b; /* your gold */
+    filter: drop-shadow(0 0 6px rgba(170,120,255,.45))
+    drop-shadow(0 0 14px rgba(170,120,255,.25));
+    transform: translateY(-2px);
+}
+
+.back-to-top {
+    font-size: var(--font-size-sm);
+    opacity: 0.6;
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+}
+
+.back-to-top:hover {
+    opacity: 1;
+}
+
+.footer-divider {
+    margin: 0 0.75rem;
+    opacity: 0.5;
+}
+
+.footer-security {
+    opacity: 0.8;
+}
+
+.footer-security:hover {
+    opacity: 1;
+}
+/* ---------- Clickable media (linked thumbnails + lightbox triggers) ---------- */
+
+.media-link {
+    display: block;
+    border-radius: var(--radius-lg);
+}
+
+.media-link > img,
+.media-link > video {
+    width: 100%;
+    display: block;
+    border-radius: inherit;
+}
+
+.media-link:hover > img,
+.media-link:hover > video,
+.media-link:focus-visible > img,
+.media-link:focus-visible > video {
+    filter: brightness(1.12);
+}
+
+.media-link:focus-visible {
+    border-radius: var(--radius-lg);
+}
+
+.lightbox-link {
+    cursor: zoom-in;
+}
+
+/* Devlog media frames (DevlogMedia.astro, src/lib/media.ts): a fixed 16:9 or
+   1:1 box chosen from the image's real shape, so the space is reserved before
+   anything loads. Media is fitted inside uncropped; the frame background
+   shows as bars where the shapes differ. No overflow: hidden - it would clip
+   the focus ring of a link inside the frame. */
+.media-frame {
+    aspect-ratio: 16 / 9;
+    background: var(--glass-pill);
+    border-radius: var(--radius-lg);
+}
+
+.media-frame--square {
+    aspect-ratio: 1 / 1;
+}
+
+.media-frame > .media-link {
+    height: 100%;
+}
+
+.media-frame img,
+.media-frame video {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: inherit;
+}
+
+/* Devlog video plus its pause/play toggle (DevlogMedia.astro). */
+.video-frame {
+    position: relative;
+    display: block;
+    border-radius: var(--radius-lg);
+}
+
+.video-frame > video {
+    width: 100%;
+    display: block;
+    border-radius: inherit;
+}
+
+.video-toggle {
+    position: absolute;
+    right: var(--space-4);
+    bottom: var(--space-4);
+    display: grid;
+    place-items: center;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    color: #fff;
+    background: var(--glass-topbar);
+    border: 1px solid var(--border-heavy);
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.video-toggle:hover {
+    border-color: var(--veil-2);
+}
+
+/* CSS-drawn icons: a play triangle while paused, two bars while playing. */
+.video-toggle-icon {
+    width: 12px;
+    height: 12px;
+    background: currentColor;
+    clip-path: polygon(15% 0, 100% 50%, 15% 100%);
+}
+
+.video-toggle[data-state="playing"] .video-toggle-icon {
+    clip-path: none;
+    background: linear-gradient(to right, currentColor 0 35%, transparent 35% 65%, currentColor 65%);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .media-link > img,
+    .media-link > video {
+        transition: filter 0.18s ease, transform 0.18s ease;
+    }
+
+    .media-link:hover > img,
+    .media-link:hover > video {
+        transform: scale(1.02);
+    }
+}
+
+/* ---------- Lightbox ---------- */
+
+.lightbox {
+    margin: auto;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    max-width: min(1100px, 92vw);
+}
+
+.lightbox::backdrop {
+    background: rgba(9, 6, 18, 0.88);
+}
+
+.lightbox-figure {
+    margin: 0;
+}
+
+.lightbox-image {
+    max-width: 100%;
+    max-height: 82vh;
+    width: auto;
+    display: block;
+    margin: 0 auto;
+    border-radius: var(--radius-lg);
+}
+
+/* The image and video share .lightbox-image; whichever is unused is hidden,
+   and the display: block above would otherwise override that. */
+.lightbox-image[hidden] {
+    display: none;
+}
+
+.lightbox-caption {
+    margin-top: var(--space-4);
+    text-align: center;
+    color: var(--muted);
+    font-size: var(--font-size-sm);
+}
+
+.lightbox-close,
+.lightbox-prev,
+.lightbox-next {
+    position: fixed;
+    width: 44px;
+    height: 44px;
+    display: grid;
+    place-items: center;
+    padding: 0;
+    border: 1px solid var(--border-heavy);
+    border-radius: 999px;
+    background: var(--glass-button);
+    color: var(--text);
+    font-size: 1.05rem;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.lightbox-close:hover,
+.lightbox-prev:hover,
+.lightbox-next:hover {
+    border-color: var(--ember);
+    color: var(--ember);
+}
+
+.lightbox-close {
+    top: 18px;
+    right: 20px;
+}
+
+.lightbox-prev,
+.lightbox-next {
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.lightbox-prev {
+    left: 16px;
+}
+
+.lightbox-next {
+    right: 16px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .lightbox[open] {
+        animation: lightbox-fade 0.18s ease;
+    }
+}
+
+@keyframes lightbox-fade {
+    from {
+        opacity: 0;
+    }
+}

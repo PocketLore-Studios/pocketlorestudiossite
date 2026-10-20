@@ -1,0 +1,44 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { SITE } from '../../../lib/site';
+---
+<BaseLayout
+        title="Security | Veilkeeper"
+        description="Security policy for Veilkeeper and vulnerability reporting information."
+>
+    <section class="section">
+        <div class="container">
+
+            <div class="section-heading">
+                <h1>Security Policy</h1>
+                <p>
+                    If you discover a security issue affecting Veilkeeper or this website,
+                    please report it to
+                    <a href={`mailto:${SITE.securityEmail}`}>
+                        {SITE.securityEmail}
+                    </a>.
+                </p>
+            </div>
+
+            <div class="panel surface">
+                <h2>What to include</h2>
+                <ul>
+                    <li>Steps to reproduce</li>
+                    <li>Affected page, feature, or endpoint</li>
+                    <li>Potential impact</li>
+                </ul>
+            </div>
+
+            <div class="panel surface">
+                <h2>Response</h2>
+                <p>We will review reports and respond within 72 hours.</p>
+            </div>
+
+            <div class="panel surface">
+                <h2>Scope</h2>
+                <p>This policy applies to pocketlorestudios.com, veilkeepergame.com, and related services.</p>
+            </div>
+
+        </div>
+    </section>
+</BaseLayout>

@@ -1,0 +1,155 @@
+---
+import StudioLayout from '../layouts/StudioLayout.astro';
+import { SITE } from '../lib/site';
+import { getSortedDevlogs, getPostUrl } from '../lib/devlog';
+const latest = (await getSortedDevlogs())[0];
+const loop = [
+  { title: 'Draft your squad', text: 'Pick six units from twelve, with the first fight’s opposition shown up front.', src: '/assets/home/loop-draft.webp', width: 800, height: 450, alt: 'Squad selection with six of twelve units drafted' },
+  { title: 'Fight on the grid', text: 'Use facing and positioning. Preview damage and counters before committing.', src: '/assets/press/press-damage-preview.webp', width: 1920, height: 1080, alt: 'Tactical combat preview showing attack damage and whether the target can counter' },
+  { title: 'Leave one behind', text: 'One unit stays to hold each relay. Your force shrinks while the opposition grows.', src: '/assets/home/loop-leave-behind.webp', width: 800, height: 450, alt: 'Relay screen asking the player which unit to leave behind' }
+];
+---
+<StudioLayout>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-content">
+          <div class="eyebrow">Building worlds worth getting lost in</div>
+          <h1 class="visually-hidden">PocketLore Studios</h1>
+          <img class="hero-logo" src="/assets/pocketlore-lockup-hero.svg" alt="" width="700" height="658">
+          <p class="lead">One deliberate layer at a time.</p>
+          <p class="sublead">
+            Each system earns the right to exist before the next one is added.
+            Play the free alpha of Veilkeeper, our debut tactical RPG.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Current Project -->
+    <section id="project" aria-label="Veilkeeper" class="section">
+      <div class="container">
+        <div id="veilkeeper" class="section-heading">
+          <span class="section-eyebrow">Our debut game</span>
+        </div>
+
+        <div class="project-card surface">
+          <div class="project-header">
+            <div class="project-icon">
+              <img src="/assets/veilkeeper-logo.webp" alt="Veilkeeper logo" width="256" height="256">
+            </div>
+            <div class="project-identity">
+              <h2 class="project-title">Veilkeeper</h2>
+              <span class="project-status">Public alpha available</span>
+            </div>
+          </div>
+
+          <p class="project-hook">Your army shrinks the deeper you push.</p>
+
+          <p class="project-desc">
+            Draft six units, fight on a tactical grid, and choose who stays behind to hold
+            the relay. Each battle gets bigger as your squad gets smaller. The free alpha
+            is a three-fight expedition for Windows and Linux.
+          </p>
+          <picture>
+            <source media="(max-width: 640px)" srcset="/assets/hero/veilkeeper-key-art-hero-portrait.webp" width="1100" height="1468">
+            <img class="project-art" src="/assets/hero/veilkeeper-key-art-hero.webp" alt="A lone figure faces a glowing rift above a fractured landscape" width="2560" height="1462" loading="lazy">
+          </picture>
+          <div class="game-actions">
+            <a class="studio-button" href={SITE.itchUrl} target="_blank" rel="noopener">Play the free alpha <span aria-hidden="true">↗</span></a>
+            <a class="studio-button studio-button-secondary" href="/play">Wishlist on Steam <span aria-hidden="true">↗</span></a>
+          </div>
+          <p class="game-availability">Windows &amp; Linux · Mouse, keyboard, or controller · In active development</p>
+          <div class="project-meta">
+            <span class="meta-tag">Godot 4</span>
+            <span class="meta-tag">C#</span>
+            <span class="meta-tag">Tactical RPG</span>
+            <span class="meta-tag">Single-player alpha</span>
+          </div>
+
+          <div class="project-links">
+            <a href="/veilkeeper/" class="project-link">Explore Veilkeeper <span class="arrow">→</span></a>
+            <a href="/veilkeeper/gameplay/" class="project-link">Gameplay <span class="arrow">→</span></a>
+            <a href="/veilkeeper/roadmap/" class="project-link">Roadmap <span class="arrow">→</span></a>
+            <a href="/veilkeeper/press/" class="project-link">Press kit <span class="arrow">→</span></a>
+            <a href="/veilkeeper/feedback/" class="project-link">Send feedback <span class="arrow">→</span></a>
+          </div>
+          <div class="game-loop" aria-label="How a run plays">
+            {loop.map(step => <figure>
+              <img src={step.src} alt={step.alt} width={step.width} height={step.height} loading="lazy" />
+              <figcaption><h3>{step.title}</h3><p>{step.text}</p></figcaption>
+            </figure>)}
+          </div>
+          <p class="game-availability">Screens from the v0.1 alpha. Unit and terrain art is placeholder; everything shown may change.</p>
+          <div class="development-update">
+            <span class="section-eyebrow">Currently building</span>
+            <p>{SITE.currentFocus}</p>
+            {latest && <a href={getPostUrl(latest)} class="project-link">{latest.data.label}: {latest.data.title} <span class="arrow">→</span></a>}
+            <a href="/veilkeeper/devlog/" class="project-link">All development updates <span class="arrow">→</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Founder -->
+    <section id="founder" class="section">
+      <div class="container">
+        <div class="section-heading">
+          <span class="section-eyebrow">Founder</span>
+        </div>
+
+        <div class="founder-card surface">
+          <h3 class="founder-name">John Serwatka</h3>
+          <div class="founder-role">Design · Code · Business</div>
+          <p class="founder-bio">
+            Solo founder building Veilkeeper openly, one system and story at a time.
+            Based in New York&rsquo;s Hudson Valley.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section id="newsletter" class="section">
+      <div class="container">
+        <div class="section-heading">
+          <span class="section-eyebrow">Newsletter</span>
+        </div>
+        <script is:inline async data-uid="aeee3e1f00" src="https://pocketlore-studios.kit.com/aeee3e1f00/index.js"></script>
+        <noscript>
+          <a href="https://pocketlore-studios.kit.com/aeee3e1f00" class="email-link surface">
+            Subscribe to the newsletter
+          </a>
+        </noscript>
+      </div>
+    </section>
+
+    <!-- Connect -->
+    <section id="connect" class="section">
+      <div class="container">
+        <div class="section-heading">
+          <span class="section-eyebrow">Connect</span>
+        </div>
+
+        <div class="connect-grid">
+          <a href="https://bsky.app/profile/veilkeepergame.bsky.social" target="_blank" rel="noopener" class="connect-link surface">
+            <span class="connect-label">Bluesky</span>
+            <span class="connect-desc">Dev updates</span>
+          </a>
+          <a href="https://x.com/Veilkeepergame" target="_blank" rel="noopener" class="connect-link surface">
+            <span class="connect-label">X</span>
+            <span class="connect-desc">Cross-posts</span>
+          </a>
+          <a href="https://discord.com/invite/5zu23e46s6" target="_blank" rel="noopener" class="connect-link surface">
+            <span class="connect-label">Discord</span>
+            <span class="connect-desc">Community</span>
+          </a>
+        </div>
+
+        <a href="mailto:contact@pocketlorestudios.com" class="email-link surface">
+          contact@pocketlorestudios.com
+        </a>
+      </div>
+    </section>
+
+</StudioLayout>

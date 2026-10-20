@@ -1,0 +1,72 @@
+---
+import { SITE } from '../lib/site';
+
+const isHome = Astro.url.pathname === '/veilkeeper/';
+const isDevlog = Astro.url.pathname.startsWith('/veilkeeper/devlog');
+const isRoadmap = Astro.url.pathname.startsWith('/veilkeeper/roadmap');
+const isGameplay = Astro.url.pathname.startsWith('/veilkeeper/gameplay');
+---
+<header class="topbar">
+    <div class="container topbar-inner">
+        <div class="brand">
+            {/* Mouse convenience duplicating the title link - skipped by keyboard/AT */}
+            <a class="brand-logo" href="/veilkeeper/" tabindex="-1" aria-hidden="true">
+                <img src="/assets/logos/veilkeeper-mark.webp" alt="" width="40" height="40">
+            </a>
+            <div class="brand-text">
+                <a class="brand-title" href="/veilkeeper/" aria-label="Veilkeeper home">Veilkeeper</a>
+                <a
+                        class="brand-sub"
+                        href={SITE.studioUrl}
+                        aria-label="PocketLore Studios home"
+                >PocketLore Studios</a>
+            </div>
+        </div>
+
+        <button
+                class="menu-toggle"
+                aria-label="Open menu"
+                aria-expanded="false"
+                aria-controls="site-nav"
+        >
+            ☰
+        </button>
+
+        <nav class="nav" id="site-nav" aria-label="Primary navigation">
+            {/* Pages only. The homepage's #status and #about sections keep their ids
+                for old links, but they no longer get nav entries. */}
+            <a href="/veilkeeper/" aria-current={isHome ? 'page' : undefined}>Home</a>
+            <a href="/veilkeeper/gameplay/" aria-current={isGameplay ? 'page' : undefined}>Gameplay</a>
+            <a href="/veilkeeper/devlog/" aria-current={isDevlog ? 'page' : undefined}>Devlog</a>
+            <a href="/veilkeeper/roadmap/" aria-current={isRoadmap ? 'page' : undefined}>Roadmap</a>
+        </nav>
+    </div>
+</header>
+
+<script>
+    const menuToggle = document.querySelector<HTMLButtonElement>('.menu-toggle');
+    const nav = document.querySelector('.nav');
+
+    if (menuToggle && nav) {
+        const closeMenu = () => {
+            nav.classList.remove('nav-open');
+            menuToggle.setAttribute('aria-expanded', 'false');
+        };
+
+        menuToggle.addEventListener('click', () => {
+            const isOpen = nav.classList.toggle('nav-open');
+            menuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        });
+
+        nav.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', closeMenu);
+        });
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && nav.classList.contains('nav-open')) {
+                closeMenu();
+                menuToggle.focus();
+            }
+        });
+    }
+</script>

@@ -1,0 +1,159 @@
+@media (max-width: 980px) {
+    .feature-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .status-update,
+    .grid-2 {
+        grid-template-columns: 1fr;
+    }
+
+    .unit-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .feature-grid--3 {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    /* Three 16:9 screenshots are unreadable at a third of a tablet width. */
+    .loop-steps {
+        grid-template-columns: minmax(0, 1fr);
+        max-width: 640px;
+    }
+
+    .hero {
+        min-height: 88vh;
+    }
+
+    .section--tight {
+        padding-top: var(--space-11);
+    }
+}
+
+@media (max-width: 720px) {
+    .topbar-inner {
+        min-height: 64px;
+        padding: var(--space-5) 0;
+        align-items: center;
+        position: relative;
+    }
+    .menu-toggle{
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 42px;
+        height: 42px;
+        margin-left: auto;
+        font-size: 1.2rem;
+        background: none;
+        border: 1px solid var(--border-soft);
+        border-radius: var(--radius-md);
+        color: var(--text);
+        cursor: pointer;
+    }
+    .nav {
+        display: none;
+    }
+    .nav.nav-open{
+        position: absolute;
+        top: calc(100% + 8px);
+        right: 0;
+        left: 0;
+        display: grid;
+        gap: 12px;
+        padding: 16px;
+        border: 3px solid var(--border-heavy);
+        border-radius: var(--radius-lg);
+        background: var(--surface-bg);
+        box-shadow: var(--shadow-surface);
+        z-index: 20;
+    }
+    .nav.nav-open a {
+        display: block;
+        padding: 10px 12px;
+        border-top: 2px solid var(--border-heavy);
+        border-radius: var(--radius-sm);
+        text-decoration: none;
+    }
+
+    .nav.nav-open a:hover,
+    .nav.nav-open a:focus-visible,
+    .nav.nav-open a:active{
+        background: var(--surface-overlay);
+        border-color: var(--border-heavy)
+    }
+
+    .brand-sub {
+        display: none;
+    }
+
+    .brand img{
+        width: 32px;
+        height: 32px;
+    }
+
+    .brand-title{
+        font-size: 0.9rem;
+    }
+
+    h1 {
+        font-size: clamp(2rem, 10vw, 3rem);
+    }
+
+    .status-row {
+        grid-template-columns: 1fr;
+    }
+
+    .status-tag {
+        white-space: normal;
+    }
+
+    .status-update-image {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        margin: 0 0 var(--space-7);
+    }
+}
+
+@media (max-width: 640px) {
+    .unit-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    /* Too narrow for label, value and link on one line: stack them, and drop
+       the separator dot that would otherwise dangle at a line end. */
+    .current-focus {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .current-focus-sep {
+        display: none;
+    }
+
+    .current-focus-link {
+        margin-left: 0;
+    }
+
+    .feature-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .section {
+        padding: var(--space-16) 0;
+    }
+
+    .hero-content {
+        padding: 92px 0 62px;
+    }
+
+    .actions {
+        flex-direction: column;
+    }
+
+    .button {
+        width: 100%;
+    }
+}
