@@ -55,9 +55,14 @@ for (const file of ['public/_redirects', 'src/lib/site.ts', 'worker/veilkeeper-r
 }
 const feed = await readFile(resolve(dist, 'veilkeeper/rss.xml'), 'utf8');
 assert(!feed.includes('https://veilkeepergame.com'), 'RSS still points to the old domain');
-assert.equal((feed.match(/<item>/g) || []).length, 13, 'A migrated devlog is missing from RSS');
+const posts = (await walk(resolve(root, 'src/content/devlog'))).filter(file => extname(file) === '.md');
+for (const post of posts) {
+  const slug = post.slice(resolve(root, 'src/content/devlog').length + 1).replace(/\.md$/, '');
+  assert(await exists(resolve(dist, 'veilkeeper/devlog', slug, 'index.html')), `Missing devlog page: ${slug}`);
+}
+assert.equal((feed.match(/<item>/g) || []).length, posts.length, 'A devlog is missing from RSS');
 const security = await readFile(resolve(dist, '.well-known/security.txt'), 'utf8');
 assert(security.includes(`Canonical: ${origin}/.well-known/security.txt`), 'Security contact canonical still points to the old domain');
 assert(security.includes(`Policy: ${origin}/veilkeeper/security/`), 'Security policy URL has not migrated');
 assert((await readFile(resolve(root, 'wrangler.jsonc'), 'utf8')).includes('"directory": "./dist"'), 'Deploy must serve the built output only');
-console.log(`PASS: ${htmlCount} HTML pages, 13 RSS entries, local links, CSP, Steam links, and ${files.length} public assets checked.`);
+console.log(`PASS: ${htmlCount} HTML pages, ${posts.length} RSS entries, local links, CSP, Steam links, and ${files.length} public assets checked.`);
