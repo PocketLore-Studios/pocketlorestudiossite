@@ -3,7 +3,7 @@
 export const SITE = {
     name: 'Veilkeeper',
     url: 'https://pocketlorestudios.com/veilkeeper/',
-    studioUrl: 'https://pocketlorestudios.com',
+    studioUrl: '/',
     securityEmail: 'security@veilkeepergame.com',
     pressEmail: 'press@veilkeepergame.com',
     // Where feedback lands; also FEEDBACK_DESTINATION in wrangler.jsonc.
