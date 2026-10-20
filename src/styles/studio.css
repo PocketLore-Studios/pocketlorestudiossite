@@ -170,6 +170,7 @@ a:focus-visible {
 
 .nav {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 1.5rem;
 }
@@ -674,4 +675,9 @@ a:focus-visible {
   .project-card { padding: 1.25rem; }
   .studio-button { width: 100%; }
   .hero-logo { width: min(320px, 70vw); }
+}
+
+/* Expanded text spacing can wrap navigation onto a second row. */
+@media (max-width: 400px) {
+  [id] { scroll-margin-top: 10rem; }
 }
