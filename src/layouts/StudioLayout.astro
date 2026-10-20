@@ -1,7 +1,7 @@
 ---
 import '../styles/studio.css';
 interface Props { title?: string; description?: string; noindex?: boolean; canonicalPath?: string }
-const { title = 'PocketLore Studios', description = 'Independent game studio in New York’s Hudson Valley. Play the free Veilkeeper tactical RPG alpha, follow development, and wishlist on Steam.', noindex = false, canonicalPath = Astro.url.pathname } = Astro.props;
+const { title = 'PocketLore Studios', description = 'An independent game studio in New York’s Hudson Valley, creating games around discovery and meaningful choices. Explore our debut game, Veilkeeper.', noindex = false, canonicalPath = Astro.url.pathname } = Astro.props;
 const canonical = new URL(canonicalPath, Astro.site);
 ---
 <!DOCTYPE html>
@@ -37,7 +37,7 @@ const canonical = new URL(canonicalPath, Astro.site);
     "name": "PocketLore Studios",
     "url": "https://pocketlorestudios.com/",
     "logo": "https://pocketlorestudios.com/assets/apple-touch-icon.png",
-    "slogan": "Stories Worth Discovering",
+    "slogan": "Building worlds worth getting lost in",
     "email": "contact@pocketlorestudios.com",
     "founder": {
       "@type": "Person",

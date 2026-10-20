@@ -347,33 +347,23 @@ a:focus-visible {
   transform: translateX(3px);
 }
 
-/* --- Founder Card --- */
-.founder-card {
+/* --- About the Studio --- */
+.about-card {
   padding: 28px;
 }
 
-.founder-name {
-  font-family: 'Cinzel', serif;
+.studio-philosophy {
   font-size: 18px;
-  font-weight: 600;
   color: var(--text-primary);
-  letter-spacing: 1px;
-  margin-bottom: 4px;
-}
-
-.founder-role {
-  font-size: 12px;
-  font-weight: 500;
-  color: var(--amber);
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  margin-bottom: 12px;
+  max-width: 62ch;
+  margin-bottom: 1rem;
 }
 
 .founder-bio {
   font-size: 14.5px;
   color: var(--text-secondary);
   line-height: 1.75;
+  max-width: 68ch;
 }
 
 /* --- Connect --- */
