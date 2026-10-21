@@ -2,7 +2,7 @@
 
 Priority: **High**. Due: **before 1UpState in November 2026**; confirm the event
 date before scheduling the cutover. Status: **site and feedback verified;
-full migration acceptance pending**.
+redirect Worker deployed; final migration acceptance pending**.
 
 Track this checklist for the actual release. Leave items unchecked until there
 is evidence; local tests cannot complete a live check. Record URLs/status codes,
@@ -13,10 +13,10 @@ or subscriber details. A passing build does not authorize a migration.
 | --- | --- |
 | Commit tested / deployed | `467c0b5` plus two existing copy edits; see release record |
 | Studio owner / operator / UTC date | John Serwatka / Codex / 2026-10-20 deployment; 2026-10-21 follow-up |
-| Previous PocketLore / Veilkeeper deployment IDs | PocketLore `19b19bde-9b47-4c8b-8cd1-472355d25f18`; Veilkeeper unchanged |
-| New PocketLore / redirect Worker deployment IDs | PocketLore `764197e3-482b-4a74-b015-2bc2fa9e906f`; redirect Worker not deployed |
-| Explicit approval to cut over the old domain | Not given; PocketLore deployment only |
-| Evidence location / outstanding issues | [Initial deployment record](releases/2026-10-20-pocketlore.md) |
+| Previous PocketLore / Veilkeeper deployment IDs | PocketLore `19b19bde-9b47-4c8b-8cd1-472355d25f18`; Veilkeeper `688db17c-5821-4115-b4c1-797707d4bd8d` |
+| New PocketLore / redirect Worker deployment IDs | PocketLore `764197e3-482b-4a74-b015-2bc2fa9e906f`; redirects `6e6ff924-b344-49ec-b121-582fbeb9de40` |
+| Explicit approval to cut over the old domain | John Serwatka disabled old builds and performed the cutover on 2026-10-21 |
+| Evidence location / outstanding issues | [Initial deployment](releases/2026-10-20-pocketlore.md), [cutover record](releases/2026-10-21-veilkeeper-cutover.md) |
 | Release acceptance by studio owner | Public site and feedback confirmed 2026-10-21; full migration acceptance pending |
 
 ## 1. Preflight
@@ -75,11 +75,14 @@ or subscriber details. A passing build does not authorize a migration.
 
 ## 3. Cut over and accept the old domain
 
-- [ ] After phases 1–2 pass, record explicit studio-owner cutover approval.
+- [x] Record explicit studio-owner cutover approval and perform the cutover.
   Disable the old repository's automatic builds and any other old-site deploy
   paths identified in preflight. Run `npm run deploy:veilkeeper-redirects` from
   this repository and record its deployment ID. It replaces the existing
   `veilkeepergame` Worker; it does not create or move custom domains or mail DNS.
+  John Serwatka confirmed Disable builds was enabled and ran the dry run and
+  deployment on 2026-10-21. The active version and retained domain attachments
+  are verified in the cutover record; remaining acceptance checks stay open.
 - [ ] Verify every route class in the matrix below through both old-domain
   apex and `www`, following redirects to the final response. Include query
   strings, Steam UTM attribution, fragments in a browser, slash variants,

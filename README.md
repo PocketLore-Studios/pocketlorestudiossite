@@ -67,8 +67,9 @@ Chromium checks at 1440px and 390px also pass for the studio and game pages,
 mobile navigation, devlog lightbox, and feedback category selection. The local
 Worker confirms Steam attribution redirects, game CSP, and real 404 responses.
 On 2026-10-21, the studio owner confirmed the public site, a successful feedback
-submission, and receipt at support. Third-party embed verification and the
-old-domain cutover remain pending.
+submission, and receipt at support. The studio owner deployed the old-domain
+redirect Worker later that day; final custom-domain redirect checks and
+third-party embed verification remain pending.
 
 ## Release status and domain cutover
 
@@ -78,9 +79,11 @@ not establish that public routing, production secrets, embeds, or delivery work.
 through its public domains, with dated evidence and studio-owner acceptance.
 
 PocketLore's initial deployment is live, and the studio owner verified the site
-and production feedback delivery. Full migration acceptance and the old-domain
-cutover remain pending. See the [deployment record](docs/releases/2026-10-20-pocketlore.md)
-for version IDs, verified behavior, and outstanding checks. Follow the
+and production feedback delivery. The Veilkeeper redirect Worker is deployed;
+full migration acceptance remains pending. See the
+[PocketLore deployment record](docs/releases/2026-10-20-pocketlore.md) and
+[domain cutover record](docs/releases/2026-10-21-veilkeeper-cutover.md) for version
+IDs, verified behavior, and outstanding checks. Follow the
 [16-item launch acceptance checklist](docs/launch.md), including deployment
 order, route expectations, and rollback criteria. Complete phases 1–3 before
 calling the migration complete; continue monitoring in phase 4.

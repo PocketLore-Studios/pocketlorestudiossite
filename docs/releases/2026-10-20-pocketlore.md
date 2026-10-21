@@ -4,8 +4,10 @@ Status: **site and feedback verified; full migration acceptance pending**.
 
 PocketLore was deployed on 2026-10-20 at 17:15:16 UTC, following the studio
 owner's instruction to bootstrap the Worker with its production secrets.
-Verification continued on 2026-10-21. The old Veilkeeper Worker and its domain
-routing were not replaced, and no Git changes were pushed.
+Verification continued on 2026-10-21. This initial deployment left the old
+Veilkeeper Worker unchanged. John Serwatka subsequently performed the
+[domain cutover](2026-10-21-veilkeeper-cutover.md) on 2026-10-21. No Git changes
+were pushed by Codex.
 
 ## Source and recovery
 
@@ -77,10 +79,11 @@ evidence. The automated challenge does not establish a visitor-facing failure.
   the intended production publish command.
 - Expired-token retry behavior and production abuse/rate-limit controls still
   need review. The successful submission does not establish those behaviors.
-- Kit signup/confirmation, remaining browser compatibility checks, old-domain
-  cutover, Search Console migration, and final studio-owner release acceptance
+- Kit signup/confirmation, remaining browser compatibility checks, final
+  custom-domain redirect verification, Search Console migration, and final
+  studio-owner release acceptance
   remain on the [launch checklist](../launch.md).
 
-Use the recorded previous version if a PocketLore rollback is needed. Follow
-the launch checklist's rollback criteria; no old-domain rollback is needed
-because the Veilkeeper redirect Worker has not been deployed.
+Use the recorded previous version if a PocketLore rollback is needed. For the
+old domain's previous version, see the cutover record. Follow the launch
+checklist's rollback criteria.
