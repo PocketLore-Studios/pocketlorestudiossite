@@ -10,12 +10,12 @@ or subscriber details. A passing build does not authorize a migration.
 
 | Release record | Value |
 | --- | --- |
-| Commit tested / deployed | Pending |
-| Studio owner / operator / UTC date | Pending |
-| Previous PocketLore / Veilkeeper deployment IDs | Pending |
-| New PocketLore / redirect Worker deployment IDs | Pending |
-| Explicit approval to cut over the old domain | Pending |
-| Evidence location / outstanding issues | Pending |
+| Commit tested / deployed | `467c0b5` plus two existing copy edits; see release record |
+| Studio owner / operator / UTC date | John Serwatka / Codex / 2026-10-20 deployment; 2026-10-21 follow-up |
+| Previous PocketLore / Veilkeeper deployment IDs | PocketLore `19b19bde-9b47-4c8b-8cd1-472355d25f18`; Veilkeeper unchanged |
+| New PocketLore / redirect Worker deployment IDs | PocketLore `764197e3-482b-4a74-b015-2bc2fa9e906f`; redirect Worker not deployed |
+| Explicit approval to cut over the old domain | Not given; PocketLore deployment only |
+| Evidence location / outstanding issues | [Initial deployment record](releases/2026-10-20-pocketlore.md) |
 | Release acceptance by studio owner | Pending |
 
 ## 1. Preflight
@@ -23,10 +23,10 @@ or subscriber details. A passing build does not authorize a migration.
 - [ ] Record the release commit, operator, launch window, previous deployments,
   and a recovery path for both Workers. Keep the old checkout and both domain
   registrations. Freeze changes that could invalidate the tested release.
-- [ ] Run `npm run types`, `npm run check`, `npm test`, `npm run build`,
+- [x] Run `npm run types`, `npm run check`, `npm test`, `npm run build`,
   `npm run test:site`, and both Wrangler deployment dry runs from the README.
   Record **build passed** with the commit; dry runs do not verify remote secrets.
-- [ ] Verify the PocketLore Worker has `TURNSTILE_SECRET` and `RESEND_API_KEY`
+- [x] Verify the PocketLore Worker has `TURNSTILE_SECRET` and `RESEND_API_KEY`
   configured, and allow both PocketLore apex and `www` in the existing Turnstile
   widget. Wrangler's `secrets.required` blocks deployment when these bindings
   are absent; it cannot establish that their values work. Provision through the
@@ -42,12 +42,15 @@ or subscriber details. A passing build does not authorize a migration.
 
 ## 2. Deploy and verify PocketLore
 
-- [ ] Deploy the selected commit to `pocketlorestudiossite` first, leaving the
-  old site live. In Workers Builds use this repository's root, Node 24, build
-  command `npm ci && npm run build`, and deploy command `npm run deploy`.
+- [x] Deploy the selected source to `pocketlorestudiossite` first, leaving the
+  old site live. The initial deployment used
+  `npx wrangler deploy --secrets-file .env.production`, serving only `dist/` and
+  keeping existing PocketLore domains attached. Deployment IDs and the source
+  snapshot are in the release record. For Git-triggered deployments, separately
+  confirm the Workers Builds settings in preflight: repository root, Node 24,
+  build command `npm ci && npm run build`, and deploy command `npm run deploy`.
   Workers Builds ignores Wrangler's custom `build.command`; set the dashboard
-  build step explicitly. Serve only `dist/`, keep existing PocketLore domains
-  attached, and record the resulting deployment ID.
+  build step explicitly.
 - [ ] Through both PocketLore public hostnames, verify `/`, `/veilkeeper/`, all
   game navigation, a devlog and its media, RSS, press assets, security.txt, and
   the `/play` variants below. Verify unknown document URLs return HTTP 404,

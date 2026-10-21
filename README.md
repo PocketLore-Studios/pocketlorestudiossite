@@ -77,7 +77,9 @@ not establish that public routing, production secrets, embeds, or delivery work.
 **Release verified** means the deployed commit passed the live acceptance checks
 through its public domains, with dated evidence and studio-owner acceptance.
 
-The migration is prepared; release verification remains pending. Follow the
+PocketLore's initial deployment is live; release verification and the old-domain
+cutover remain pending. See the [deployment record](docs/releases/2026-10-20-pocketlore.md)
+for version IDs, verified behavior, and outstanding checks. Follow the
 [16-item launch acceptance checklist](docs/launch.md), including deployment
 order, route expectations, and rollback criteria. Complete phases 1–3 before
 calling the migration complete; continue monitoring in phase 4.

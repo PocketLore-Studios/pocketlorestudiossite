@@ -1,0 +1,81 @@
+# Initial PocketLore deployment
+
+Status: **deployed; live release acceptance pending**.
+
+PocketLore was deployed on 2026-10-20 at 17:15:16 UTC, following the studio
+owner's instruction to bootstrap the Worker with its production secrets.
+Verification continued on 2026-10-21. The old Veilkeeper Worker and its domain
+routing were not replaced, and no Git changes were pushed.
+
+## Source and recovery
+
+| Item | Recorded value |
+| --- | --- |
+| Source base | `467c0b5f59931b497283b3def627c5bb824fc5fb` |
+| Worker | `pocketlorestudiossite` |
+| New deployment | `764197e3-482b-4a74-b015-2bc2fa9e906f` |
+| New version | `dc9faa54-0c99-4708-a7e1-c09e83234b23` |
+| Previous deployment | `19b19bde-9b47-4c8b-8cd1-472355d25f18` |
+| Previous version | `e4bd7062-0808-48d8-939e-434704ba8cbc` |
+| Public hostnames | `pocketlorestudios.com`, `www.pocketlorestudios.com` |
+| Worker URL | `https://pocketlorestudiossite.patient-bush-06d1.workers.dev` |
+
+The deployed working copy also included two pre-existing, uncommitted edits:
+
+- `src/lib/site.ts`: current focus changed to “Making the enemy ai more capable”.
+- `src/pages/index.astro`: the founder introduction now says “He shares the
+  development process openly, from early experiments and technical challenges
+  to the decisions that shape each game.”
+
+These edits remain uncommitted. A future Git deployment from the source base
+alone will not include them. The ignored production secrets file is outside
+`dist/` and was not uploaded as a public asset.
+
+## Verified
+
+- Local type checks, all 31 Worker tests, production build, the built-site
+  guard, and both deployment dry runs passed before deployment.
+- Deployment used `npx wrangler deploy --secrets-file .env.production`.
+  Cloudflare's settings API confirms `TURNSTILE_SECRET` and `RESEND_API_KEY`
+  are runtime bindings of type `secret_text`; no values are recorded here.
+- Both PocketLore custom hostnames remain attached to this Worker.
+- The existing Turnstile widget (`0x4AAAAAAD7jYecPL3c82-lW`) now allows
+  `pocketlorestudios.com`, `www.pocketlorestudios.com`, and `veilkeepergame.com`.
+  Its managed mode and existing Veilkeeper hostname were preserved.
+- Through the deployed Worker URL, the studio homepage, all main game pages,
+  the devlog archive and latest post, security.txt, robots.txt, sitemap index,
+  sitemap, and sharing image returned 200. Rendered canonical URLs point to
+  PocketLore, and game pages receive their CSP.
+- All four `/play` variants returned 302 to the expected Steam app and retained
+  the supplied UTM query parameter.
+- Unknown studio/game document URLs returned 404, including requests marked
+  as browser navigation. GET requests to `/api/feedback`, its trailing-slash
+  variant, and an unknown API route returned JSON 404.
+- Controlled feedback requests rejected a foreign origin with 403, a missing
+  Turnstile token with 400, and an oversized body with 413. These checks did not
+  send mail. The live RSS feed contained 13 posts and the corrected game URL.
+
+## Pending acceptance
+
+- Requests from the automated verification environment to the public
+  PocketLore domain return Cloudflare's browser challenge: HTTP 403,
+  `cf-mitigated: challenge`, title “Just a moment...”. Chromium encountered the
+  same challenge. This prevents completing public-domain/browser acceptance
+  from this environment; it is distinct from the successful Worker URL checks.
+  Ordinary-browser behavior on both public hostnames still needs confirmation.
+- A real form submission, success confirmation, and receipt at
+  `support@veilkeepergame.com` remain unverified. An attached secret and
+  validation failures do not establish successful delivery.
+- Cloudflare returned 403 to the Wrangler OAuth credential for the Builds API.
+  Dashboard build settings could not be read or saved through that credential.
+  The studio owner indicated they should be saved, but the exact production
+  and preview deployment commands remain unconfirmed. `wrangler versions upload`
+  creates a version without promoting it to production; `npm run deploy` is
+  the intended production publish command.
+- Kit signup/confirmation, remaining browser compatibility checks, old-domain
+  cutover, Search Console migration, and final studio-owner release acceptance
+  remain on the [launch checklist](../launch.md).
+
+Use the recorded previous version if a PocketLore rollback is needed. Follow
+the launch checklist's rollback criteria; no old-domain rollback is needed
+because the Veilkeeper redirect Worker has not been deployed.
