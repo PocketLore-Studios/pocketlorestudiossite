@@ -28,10 +28,16 @@ jobs:
           # instead of a 200 "invite invalid" page.
           # Accept 403/429: X/Twitter and some sites block bots but the
           # links are fine; a truly dead page still returns 404.
+          # These runtime routes have no file in dist/: /play variants are
+          # Cloudflare redirects, and /api/feedback accepts Worker POSTs.
+          # Their behavior is covered by the deployment guard and Worker tests.
+          # Exclude only these exact routes so other missing files still fail.
           args: >-
             --no-progress
             --root-dir ${{ github.workspace }}/dist
             --accept '200..=299,403,429'
             --remap 'https://discord.com/invite/(.*) https://discord.com/api/v10/invites/$1'
+            --exclude '^file://.*/dist/(?:veilkeeper/)?play/?(?:[?#].*)?$'
+            --exclude '^file://.*/dist/api/feedback$'
             './dist/**/*.html'
           fail: true
