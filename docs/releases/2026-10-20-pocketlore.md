@@ -29,9 +29,9 @@ The deployed working copy also included two pre-existing, uncommitted edits:
   development process openly, from early experiments and technical challenges
   to the decisions that shape each game.”
 
-These edits remain uncommitted. A future Git deployment from the source base
-alone will not include them. The ignored production secrets file is outside
-`dist/` and was not uploaded as a public asset.
+These edits were subsequently committed as `78623eb` (development focus) and
+`d905c37` (founder introduction), so Git includes the deployed copy. The ignored
+production secrets file is outside `dist/` and was not uploaded as a public asset.
 
 ## Verified
 

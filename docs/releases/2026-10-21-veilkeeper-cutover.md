@@ -20,7 +20,7 @@ studio-owner-operated cutover, not an automatic consequence of passing CI.
 | Retained custom hostnames | `veilkeepergame.com`, `www.veilkeepergame.com` |
 | Worker URL | `https://veilkeepergame.patient-bush-06d1.workers.dev` |
 
-The two existing uncommitted PocketLore copy edits do not affect this Worker.
+The two PocketLore copy edits present during cutover do not affect this Worker.
 It has no static asset directory or required runtime bindings. The deployment
 does not request DNS or email changes. No Git changes were pushed by Codex.
 
