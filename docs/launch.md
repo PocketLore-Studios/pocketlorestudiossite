@@ -1,7 +1,8 @@
 # PocketLore Website Launch
 
 Priority: **High**. Due: **before 1UpState in November 2026**; confirm the event
-date before scheduling the cutover. Status: **release verification pending**.
+date before scheduling the cutover. Status: **site and feedback verified;
+full migration acceptance pending**.
 
 Track this checklist for the actual release. Leave items unchecked until there
 is evidence; local tests cannot complete a live check. Record URLs/status codes,
@@ -16,7 +17,7 @@ or subscriber details. A passing build does not authorize a migration.
 | New PocketLore / redirect Worker deployment IDs | PocketLore `764197e3-482b-4a74-b015-2bc2fa9e906f`; redirect Worker not deployed |
 | Explicit approval to cut over the old domain | Not given; PocketLore deployment only |
 | Evidence location / outstanding issues | [Initial deployment record](releases/2026-10-20-pocketlore.md) |
-| Release acceptance by studio owner | Pending |
+| Release acceptance by studio owner | Public site and feedback confirmed 2026-10-21; full migration acceptance pending |
 
 ## 1. Preflight
 
@@ -59,12 +60,13 @@ or subscriber details. A passing build does not authorize a migration.
   404. Matching static assets should still load with expected cache/security
   headers; the game pages must receive their CSP. This checks the deployed
   `run_worker_first: ["/api/*"]` and `404-page` configuration, beyond unit tests.
-- [ ] Submit real feedback using the production form; verify its confirmation
-  and actual receipt at `support@veilkeepergame.com`. Check safe rejection of
-  invalid/expired tokens, unexpected origins, and oversized submissions, then
-  verify the form can obtain a fresh token and retry. Use controlled requests,
-  review current abuse/rate-limit controls, and avoid load testing production.
-  Turnstile and body limits are not a general request rate limiter.
+- [x] Submit real feedback using the production form; verify its confirmation
+  and actual receipt at `support@veilkeepergame.com`. John Serwatka confirmed
+  the public site, successful submission, and receipt at support on 2026-10-21.
+  Automated rejection checks passed for a missing token, unexpected origin, and
+  oversized body. Expired-token retries and production abuse/rate-limit review
+  remain separate follow-ups in the release record; Turnstile and body limits
+  are not a general request rate limiter.
 - [ ] Check mobile Safari, Firefox, Chromium, keyboard-only navigation, focus,
   mobile layouts, form validation, image/video loading, and console/network
   failures. Complete a Kit signup and confirmation with a designated test

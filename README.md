@@ -66,9 +66,9 @@ guard (23 HTML files and 13 RSS entries), and both deployment dry runs pass.
 Chromium checks at 1440px and 390px also pass for the studio and game pages,
 mobile navigation, devlog lightbox, and feedback category selection. The local
 Worker confirms Steam attribution redirects, game CSP, and real 404 responses.
-Third-party embeds and live feedback delivery still need production verification
-after the production configuration in the launch checklist. No cutover has been
-deployed.
+On 2026-10-21, the studio owner confirmed the public site, a successful feedback
+submission, and receipt at support. Third-party embed verification and the
+old-domain cutover remain pending.
 
 ## Release status and domain cutover
 
@@ -77,7 +77,8 @@ not establish that public routing, production secrets, embeds, or delivery work.
 **Release verified** means the deployed commit passed the live acceptance checks
 through its public domains, with dated evidence and studio-owner acceptance.
 
-PocketLore's initial deployment is live; release verification and the old-domain
+PocketLore's initial deployment is live, and the studio owner verified the site
+and production feedback delivery. Full migration acceptance and the old-domain
 cutover remain pending. See the [deployment record](docs/releases/2026-10-20-pocketlore.md)
 for version IDs, verified behavior, and outstanding checks. Follow the
 [16-item launch acceptance checklist](docs/launch.md), including deployment

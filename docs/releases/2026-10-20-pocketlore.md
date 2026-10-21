@@ -1,6 +1,6 @@
 # Initial PocketLore deployment
 
-Status: **deployed; live release acceptance pending**.
+Status: **site and feedback verified; full migration acceptance pending**.
 
 PocketLore was deployed on 2026-10-20 at 17:15:16 UTC, following the studio
 owner's instruction to bootstrap the Worker with its production secrets.
@@ -54,24 +54,29 @@ alone will not include them. The ignored production secrets file is outside
 - Controlled feedback requests rejected a foreign origin with 403, a missing
   Turnstile token with 400, and an oversized body with 413. These checks did not
   send mail. The live RSS feed contained 13 posts and the corrected game URL.
+- On 2026-10-21, John Serwatka confirmed the public site works in his browser,
+  the feedback form loads and accepts a submission, and the resulting feedback
+  arrived at support. This verifies the production form and email-delivery flow
+  through the public site, beyond the automated Worker URL checks.
+
+## Verification limitation
+
+Automated requests to the public PocketLore domain on 2026-10-21 received
+Cloudflare's browser challenge: HTTP 403, `cf-mitigated: challenge`, title
+“Just a moment...”. Chromium encountered the same challenge. The studio owner's
+successful browser submission and confirmed receipt provide the live feedback
+evidence. The automated challenge does not establish a visitor-facing failure.
 
 ## Pending acceptance
 
-- Requests from the automated verification environment to the public
-  PocketLore domain return Cloudflare's browser challenge: HTTP 403,
-  `cf-mitigated: challenge`, title “Just a moment...”. Chromium encountered the
-  same challenge. This prevents completing public-domain/browser acceptance
-  from this environment; it is distinct from the successful Worker URL checks.
-  Ordinary-browser behavior on both public hostnames still needs confirmation.
-- A real form submission, success confirmation, and receipt at
-  `support@veilkeepergame.com` remain unverified. An attached secret and
-  validation failures do not establish successful delivery.
 - Cloudflare returned 403 to the Wrangler OAuth credential for the Builds API.
   Dashboard build settings could not be read or saved through that credential.
   The studio owner indicated they should be saved, but the exact production
   and preview deployment commands remain unconfirmed. `wrangler versions upload`
   creates a version without promoting it to production; `npm run deploy` is
   the intended production publish command.
+- Expired-token retry behavior and production abuse/rate-limit controls still
+  need review. The successful submission does not establish those behaviors.
 - Kit signup/confirmation, remaining browser compatibility checks, old-domain
   cutover, Search Console migration, and final studio-owner release acceptance
   remain on the [launch checklist](../launch.md).
